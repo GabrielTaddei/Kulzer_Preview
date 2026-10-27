@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kulzer Brasil — Saúde bucal nas melhores mãos</title>
+<meta name="description" content="Proposta de redesign do site Kulzer Brasil.">
+<meta name="theme-color" content="#071B3A">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #071B3A; }
+* { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: inherit; }
+.disp { font-family: 'Archivo', system-ui, sans-serif; font-stretch: 115%; letter-spacing: -0.02em; }
+.wrap { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.navlink { padding: 10px 14px; border-radius: 999px; font-size: 14px; font-weight: 500; color: #DCE6F5; transition: background .25s ease, color .25s ease; }
+.navlink:hover { background: rgba(255,255,255,.08); color: #FFFFFF; }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 600; font-size: 15px; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, background .25s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn-solid { background: var(--accent); color: #04142C; box-shadow: 0 10px 30px -10px var(--accent); }
+.btn-solid:hover { color: #04142C; box-shadow: 0 18px 40px -12px var(--accent); }
+.btn-ghost { border: 1px solid rgba(255,255,255,.28); color: #FFFFFF; }
+.btn-ghost:hover { background: rgba(255,255,255,.08); color: #FFFFFF; }
+.btn-dark { background: #071B3A; color: #FFFFFF; }
+.btn-dark:hover { color: #FFFFFF; background: #0A4DA2; }
+.arrow { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.btn:hover .arrow, .card-link:hover .arrow { transform: translateX(4px); }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.marquee-track { display: flex; gap: 64px; width: max-content; animation: marquee 38s linear infinite; }
+.spin-a { transform-origin: 300px 300px; animation: spin 40s linear infinite; }
+.spin-b { transform-origin: 300px 300px; animation: spin 60s linear infinite reverse; }
+.float { animation: float 6s ease-in-out infinite; }
+.float-2 { animation: float 7s ease-in-out -2s infinite; }
+.float-3 { animation: float 8s ease-in-out -4s infinite; }
+.layer { animation: layer 3.2s ease-in-out infinite; }
+.pcard { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease, border-color .3s ease; }
+.pcard:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(7,27,58,.45); border-color: #0A4DA2; }
+.chip { min-height: 48px; padding: 0 22px; border-radius: 999px; font: 600 15px 'Inter', sans-serif; cursor: pointer; transition: all .3s ease; }
+.tile { transition: background .3s ease, transform .4s cubic-bezier(.2,.8,.2,1); }
+.tile:hover { background: #FFFFFF; transform: translateY(-4px); }
+.social { transition: background .3s ease, color .3s ease, transform .3s ease; }
+.social:hover { background: var(--accent); color: #04142C; transform: translateY(-3px); }
+.flink { color: #A9BBD6; font-size: 14px; line-height: 2.1; }
+.flink:hover { color: #FFFFFF; }
+.stack-card { position: sticky; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes layer { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: none; } }
+@keyframes heroOut { to { opacity: 0; transform: translateY(-80px) scale(.96); filter: blur(6px); } }
+@keyframes wipe { from { clip-path: inset(10% 5% 0 5% round 56px); } to { clip-path: inset(0 0 0 0 round 0); } }
+@keyframes fan { from { transform: rotate(0deg) translateY(40px); opacity: 0; } to { opacity: 1; } }
+@keyframes shrink { to { transform: scale(.94); filter: brightness(.82); } }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@supports (animation-timeline: view()) {
+  .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+  .hero-copy { animation: heroOut linear both; animation-timeline: scroll(); animation-range: 0px 640px; }
+  .wipe { animation: wipe linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+  .stack-inner { animation: shrink linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+  .bar { transform-origin: left; animation: grow linear both; animation-timeline: scroll(); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .spin-a, .spin-b, .float, .float-2, .float-3, .layer, .reveal, .hero-copy, .wipe, .stack-inner { animation: none !important; }
+}
+@media (max-width: 960px) {
+  .wrap { padding: 0 16px; }
+  .grid-2 { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .grid-3 { grid-template-columns: minmax(0, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hide-m { display: none !important; }
+  .stack-card { position: relative; top: 0 !important; }
+}
+@media (max-width: 560px) {
+  .grid-4 { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+<style>
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.fade-in{animation:fadeIn .5s cubic-bezier(.2,.8,.2,1) both}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+
+<div style="--accent: #4FB6EE; font-family: 'Inter', system-ui, sans-serif; color: #0B1424; background: #F5F8FC; width: 100%; overflow-x: hidden">
+
+<!-- progress bar -->
+<div class="bar" aria-hidden="true" style="position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); z-index: 60"></div>
+
+<!-- NAV -->
+<header style="position: fixed; top: 14px; left: 0; right: 0; z-index: 50; padding: 0 16px">
+<nav aria-label="Principal" style="max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 10px 10px 24px; border-radius: 999px; background: rgba(7,27,58,.62); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,.12)">
+<a href="https://kulzer.com.br/pt/pt/inicio/inicio.html" aria-label="Kulzer — início" style="display: flex; align-items: center; gap: 10px">
+<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><circle cx="11" cy="11" r="9.5" fill="none" stroke="#FFFFFF" stroke-width="1.6"></circle><circle cx="23" cy="11" r="9.5" fill="none" stroke="#4FB6EE" stroke-width="1.6"></circle></svg>
+<span class="disp" style="font-size: 24px; font-weight: 800; color: #FFFFFF">Kulzer</span>
+</a>
+<div class="hide-m" style="display: flex; align-items: center; gap: 2px">
+<a class="navlink" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Cirurgião-Dentista</a>
+<a class="navlink" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Técnico de Prótese</a>
+<a class="navlink" href="https://kulzer.com.br/pt/pt/cad-cam/linha-digital.html">CAD/CAM</a>
+<a class="navlink" href="https://kulzer.com.br/pt/pt/produtos/produtos.html">Produtos</a>
+<a class="navlink" href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Downloads</a>
+<a class="navlink" href="https://kulzer.com.br/pt/pt/empresa/nossa-empresa.html">Empresa</a>
+</div>
+<a class="btn btn-solid" href="https://api.whatsapp.com/send?phone=5511976449072" style="min-height: 44px; padding: 0 20px; font-size: 14px">Fale conosco</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section aria-label="Abertura" style="position: relative; min-height: 900px; background: #071B3A; color: #FFFFFF; overflow: hidden; display: flex; align-items: center">
+<div aria-hidden="true" style="position: absolute; right: -180px; top: 50%; width: 900px; height: 900px; margin-top: -430px; opacity: .9">
+<svg viewBox="0 0 600 600" width="100%" height="100%">
+<g class="spin-a"><circle cx="230" cy="300" r="190" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1"></circle><circle cx="420" cy="300" r="8" fill="#4FB6EE"></circle></g>
+<g class="spin-b"><circle cx="370" cy="300" r="190" fill="none" stroke="rgba(79,182,238,.45)" stroke-width="1.2"></circle><circle cx="180" cy="300" r="5" fill="#FFFFFF"></circle></g>
+<circle cx="300" cy="300" r="270" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1" stroke-dasharray="2 8"></circle>
+<circle cx="300" cy="300" r="120" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"></circle>
+</svg>
+</div>
+<div class="float hide-m" style="position: absolute; right: 22%; top: 24%; padding: 12px 18px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(12px); font-size: 14px; font-weight: 600">Charisma® E4SY</div>
+<div class="float-2 hide-m" style="position: absolute; right: 8%; top: 46%; padding: 12px 18px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(12px); font-size: 14px; font-weight: 600">cara® Print Cube</div>
+<div class="float-3 hide-m" style="position: absolute; right: 26%; bottom: 20%; padding: 12px 18px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(12px); font-size: 14px; font-weight: 600">HeraCeram® cre-active</div>
+
+<div class="wrap hero-copy" style="position: relative; padding-top: 140px; padding-bottom: 80px">
+<p class="eyebrow" style="margin: 0 0 28px; color: #A9BBD6"><span class="dot"></span>Kulzer Brasil · Odontologia</p>
+<h1 class="disp" style="margin: 0; font-size: clamp(52px, 8.6vw, 142px); line-height: .92; font-weight: 800; max-width: 980px">Saúde bucal nas <span style="color: var(--accent)">melhores</span> mãos.</h1>
+<p style="margin: 32px 0 0; max-width: 520px; font-size: 19px; line-height: 1.6; color: #C9D6EA">Uma das maiores empresas odontológicas do mundo, com soluções completas para o consultório, o laboratório e o fluxo digital.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 44px">
+<a class="btn btn-solid" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Para o consultório <span class="arrow" aria-hidden="true">→</span></a>
+<a class="btn btn-ghost" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Para o laboratório <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .2em; color: #A9BBD6">ROLE<span style="width: 1px; height: 40px; background: linear-gradient(#A9BBD6, transparent)"></span></div>
+</section>
+
+<!-- MARQUEE -->
+<div aria-label="Marcas Kulzer" style="background: #0A4DA2; color: #FFFFFF; overflow: hidden; padding: 26px 0">
+<div class="marquee-track disp" style="font-size: 34px; font-weight: 700; white-space: nowrap">
+<span>Charisma®</span><span style="color: var(--accent)">✦</span><span>GLUMA®</span><span style="color: var(--accent)">✦</span><span>Variotime®</span><span style="color: var(--accent)">✦</span><span>Pala®</span><span style="color: var(--accent)">✦</span><span>Signum®</span><span style="color: var(--accent)">✦</span><span>HeraCeram®</span><span style="color: var(--accent)">✦</span><span>dima® Print</span><span style="color: var(--accent)">✦</span><span>cara® Print</span><span style="color: var(--accent)">✦</span><span>Delara®</span><span style="color: var(--accent)">✦</span>
+<span aria-hidden="true">Charisma®</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">GLUMA®</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">Variotime®</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">Pala®</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">Signum®</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">HeraCeram®</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">dima® Print</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">cara® Print</span><span aria-hidden="true" style="color: var(--accent)">✦</span><span aria-hidden="true">Delara®</span><span aria-hidden="true" style="color: var(--accent)">✦</span>
+</div>
+</div>
+
+<!-- FEATURE: HeraCeram cre-active -->
+<section aria-label="Lançamento HeraCeram cre-active" style="padding: 140px 0; background: #F5F8FC">
+<div class="wrap grid-2">
+<div class="reveal">
+<p class="eyebrow" style="margin: 0 0 22px; color: #0A4DA2"><span class="dot"></span>Pigmento cerâmico · Destaque</p>
+<h2 class="disp" style="margin: 0; font-size: clamp(40px, 5.4vw, 80px); line-height: .98; font-weight: 800; color: #071B3A">Criatividade com eficiência.</h2>
+<p style="margin: 28px 0 0; font-size: 19px; line-height: 1.65; color: #46566E; max-width: 500px"><strong style="color: #071B3A">HeraCeram® cre-active</strong> simplifica a individualização estética em cerâmica. Crie restaurações naturais e altamente estéticas com facilidade.</p>
+<div style="display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap">
+<a class="btn btn-dark" href="https://kulzer.com.br/pt/pt/produtos/heraceram-cre-active.html">Conhecer o produto <span class="arrow" aria-hidden="true">→</span></a>
+<a class="btn" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/heraceram/just-stain.html" style="border: 1px solid #C7D3E3; color: #071B3A">Conceito Just stain</a>
+</div>
+</div>
+<div class="reveal" style="position: relative; height: 520px; border-radius: 40px; background: #071B3A; overflow: hidden; display: flex; align-items: center; justify-content: center">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(79,182,238,.35), transparent 55%)"></div>
+<div aria-hidden="true" style="position: relative; width: 300px; height: 360px">
+<div style="position: absolute; left: 110px; bottom: 0; width: 80px; height: 300px; border-radius: 40px 40px 16px 16px; background: #F6EEE2; transform-origin: 50% 100%; transform: rotate(-36deg); box-shadow: 0 20px 40px -20px rgba(0,0,0,.6)"></div>
+<div style="position: absolute; left: 110px; bottom: 0; width: 80px; height: 300px; border-radius: 40px 40px 16px 16px; background: #EFE2CC; transform-origin: 50% 100%; transform: rotate(-18deg); box-shadow: 0 20px 40px -20px rgba(0,0,0,.6)"></div>
+<div style="position: absolute; left: 110px; bottom: 0; width: 80px; height: 300px; border-radius: 40px 40px 16px 16px; background: #E7D4B4; transform-origin: 50% 100%; box-shadow: 0 20px 40px -20px rgba(0,0,0,.6)"></div>
+<div style="position: absolute; left: 110px; bottom: 0; width: 80px; height: 300px; border-radius: 40px 40px 16px 16px; background: #DDC49C; transform-origin: 50% 100%; transform: rotate(18deg); box-shadow: 0 20px 40px -20px rgba(0,0,0,.6)"></div>
+<div style="position: absolute; left: 110px; bottom: 0; width: 80px; height: 300px; border-radius: 40px 40px 16px 16px; background: #D1B386; transform-origin: 50% 100%; transform: rotate(36deg); box-shadow: 0 20px 40px -20px rgba(0,0,0,.6)"></div>
+</div>
+<p style="position: absolute; left: 28px; bottom: 24px; margin: 0; font-size: 13px; color: #A9BBD6; letter-spacing: .08em">[FOTO DO PRODUTO HERACERAM® CRE-ACTIVE]</p>
+</div>
+</div>
+</section>
+
+<!-- PATHS: sticky stacking -->
+<section aria-label="Soluções por perfil" style="background: #F5F8FC; padding: 40px 0 140px">
+<div class="wrap">
+<div class="reveal" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 56px">
+<h2 class="disp" style="margin: 0; font-size: clamp(36px, 4.6vw, 68px); line-height: 1; font-weight: 800; color: #071B3A; max-width: 720px">Feito para a sua rotina.</h2>
+<p style="margin: 0; max-width: 380px; font-size: 17px; line-height: 1.6; color: #46566E">Produtos, serviços e soluções de qualidade para cada etapa do trabalho odontológico.</p>
+</div>
+
+<div class="stack-card" style="top: 110px; margin-bottom: 28px">
+<article class="stack-inner" style="border-radius: 40px; background: #FFFFFF; border: 1px solid #DDE6F1; padding: 56px; min-height: 480px; box-shadow: 0 40px 80px -60px rgba(7,27,58,.5)">
+<div class="grid-2" style="align-items: start">
+<div>
+<span class="disp" style="font-size: 18px; font-weight: 700; color: #0A4DA2">01 / Consultório</span>
+<h3 class="disp" style="margin: 18px 0 0; font-size: clamp(34px, 3.8vw, 56px); line-height: 1; font-weight: 800; color: #071B3A">Para o Cirurgião-Dentista</h3>
+<p style="margin: 22px 0 0; font-size: 18px; line-height: 1.6; color: #46566E">Apoiamos seu sucesso com produtos, serviços e soluções de qualidade para sua rotina clínica.</p>
+<a class="btn btn-dark" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html" style="margin-top: 36px">Saiba como podemos te ajudar <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<div>
+<p class="eyebrow" style="margin: 0 0 14px; color: #5A6B82; font-size: 12px">Por indicação</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a class="tile" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/prevencao/prevencao.html" style="padding: 14px 20px; border-radius: 16px; background: #EEF4FA; font-weight: 600; font-size: 15px">Prevenção</a>
+<a class="tile" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/materiais-de-moldagem/materiais-de-moldagem.html" style="padding: 14px 20px; border-radius: 16px; background: #EEF4FA; font-weight: 600; font-size: 15px">Materiais de Moldagem</a>
+<a class="tile" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/materiais-restauradores/materiais-restauradores.html" style="padding: 14px 20px; border-radius: 16px; background: #EEF4FA; font-weight: 600; font-size: 15px">Materiais Restauradores</a>
+<a class="tile" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/filmes-radiograficos/filmes-radiograficos.html" style="padding: 14px 20px; border-radius: 16px; background: #EEF4FA; font-weight: 600; font-size: 15px">Filmes radiográficos</a>
+</div>
+<p class="eyebrow" style="margin: 32px 0 14px; color: #5A6B82; font-size: 12px">Marcas</p>
+<p class="disp" style="margin: 0; font-size: 30px; font-weight: 700; color: #071B3A; line-height: 1.3">Charisma® · GLUMA® · Variotime® · Dynamix® · Optosil®</p>
+</div>
+</div>
+</article>
+</div>
+
+<div class="stack-card" style="top: 140px; margin-bottom: 28px">
+<article class="stack-inner" style="border-radius: 40px; background: #0A4DA2; color: #FFFFFF; padding: 56px; min-height: 480px; box-shadow: 0 40px 80px -60px rgba(7,27,58,.6)">
+<div class="grid-2" style="align-items: start">
+<div>
+<span class="disp" style="font-size: 18px; font-weight: 700; color: #BFE3F8">02 / Laboratório</span>
+<h3 class="disp" style="margin: 18px 0 0; font-size: clamp(34px, 3.8vw, 56px); line-height: 1; font-weight: 800">Para o Técnico de Prótese</h3>
+<p style="margin: 22px 0 0; font-size: 18px; line-height: 1.6; color: #DCE8F7">Apoiamos seu sucesso com produtos, serviços e soluções de qualidade para a sua rotina laboratorial.</p>
+<a class="btn" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html" style="margin-top: 36px; background: #FFFFFF; color: #071B3A">Veja como podemos te ajudar <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<div>
+<p class="eyebrow" style="margin: 0 0 14px; color: #BFE3F8; font-size: 12px">Por indicação</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.12); font-weight: 600; font-size: 15px">CAD/CAM</span>
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Resinas Indiretas</span>
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Dentes Artificiais</span>
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Prótese total, parcial e removível</span>
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Cerâmica</span>
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Revestimento</span>
+</div>
+<p class="eyebrow" style="margin: 32px 0 14px; color: #BFE3F8; font-size: 12px">Marcas</p>
+<p class="disp" style="margin: 0; font-size: 30px; font-weight: 700; line-height: 1.3">Pala® · Signum® · HeraCeram® · Hera · Delara®</p>
+</div>
+</div>
+</article>
+</div>
+
+<div class="stack-card" style="top: 170px">
+<article class="stack-inner" style="border-radius: 40px; background: #071B3A; color: #FFFFFF; padding: 56px; min-height: 480px; box-shadow: 0 40px 80px -60px rgba(7,27,58,.7)">
+<div class="grid-2" style="align-items: start">
+<div>
+<span class="disp" style="font-size: 18px; font-weight: 700; color: var(--accent)">03 / Digital</span>
+<h3 class="disp" style="margin: 18px 0 0; font-size: clamp(34px, 3.8vw, 56px); line-height: 1; font-weight: 800">CAD/CAM e Impressão 3D</h3>
+<p style="margin: 22px 0 0; font-size: 18px; line-height: 1.6; color: #C9D6EA">Um vasto sistema digital que facilita o dia a dia do profissional — do software à resina.</p>
+<a class="btn btn-solid" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html" style="margin-top: 36px">Quero fazer parte <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<div>
+<p class="eyebrow" style="margin: 0 0 14px; color: #A9BBD6; font-size: 12px">Ecossistema</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Equipamentos para impressão 3D</span>
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Resinas para impressão 3D</span>
+<span style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Software para impressão 3D</span>
+<a class="social" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/%C3%A0rea-de-suporte-cara-print/cara-print-cube-support-hub.html" style="padding: 14px 20px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); font-weight: 600; font-size: 15px">Área de suporte cara® Print →</a>
+</div>
+<p class="eyebrow" style="margin: 32px 0 14px; color: #A9BBD6; font-size: 12px">Marcas</p>
+<p class="disp" style="margin: 0; font-size: 30px; font-weight: 700; line-height: 1.3">cara® Print · dima® Print · HiLite® power 3D</p>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- CAD/CAM immersive -->
+<section class="wipe" aria-label="cara Print Cube" style="background: #04122A; color: #FFFFFF; padding: 160px 0; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 64px 64px"></div>
+<div class="wrap grid-2" style="position: relative">
+<div class="reveal">
+<p class="eyebrow" style="margin: 0 0 22px; color: var(--accent)"><span class="dot"></span>Novo · Impressora 3D</p>
+<h2 class="disp" style="margin: 0; font-size: clamp(44px, 6vw, 96px); line-height: .94; font-weight: 800">Muito mais que impressão 3D.</h2>
+<p style="margin: 28px 0 0; font-size: 19px; line-height: 1.65; color: #C9D6EA; max-width: 520px">A <strong style="color: #FFFFFF">cara® Print Cube</strong> é uma solução compacta e confiável: alta precisão e uma plataforma de impressão maior, com capacidade para cinco modelos — resultados consistentes, todas as vezes.</p>
+<div class="grid-3" style="margin-top: 44px; gap: 14px">
+<div style="padding: 22px; border-radius: 22px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1)"><p class="disp" style="margin: 0; font-size: 44px; font-weight: 800; color: var(--accent)">5</p><p style="margin: 6px 0 0; font-size: 14px; color: #C9D6EA">modelos por impressão</p></div>
+<div style="padding: 22px; border-radius: 22px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1)"><p class="disp" style="margin: 0; font-size: 44px; font-weight: 800; color: var(--accent)">10</p><p style="margin: 6px 0 0; font-size: 14px; color: #C9D6EA">resinas dima® Print</p></div>
+<div style="padding: 22px; border-radius: 22px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1)"><p class="disp" style="margin: 0; font-size: 44px; font-weight: 800; color: var(--accent)">1</p><p style="margin: 6px 0 0; font-size: 14px; color: #C9D6EA">fluxo validado de ponta a ponta</p></div>
+</div>
+<a class="btn btn-solid" href="https://kulzer.com.br/pt/pt/produtos/cara-print-cube.html" style="margin-top: 44px">Ver detalhes da Cube <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<div class="reveal" aria-hidden="true" style="display: flex; justify-content: center">
+<svg viewBox="0 0 400 440" width="100%" style="max-width: 460px">
+<polygon points="200,30 360,115 200,200 40,115" fill="#123A74" stroke="#4FB6EE" stroke-width="1.5"></polygon>
+<polygon points="40,115 200,200 200,410 40,325" fill="#0A2A58" stroke="#4FB6EE" stroke-width="1.5"></polygon>
+<polygon points="360,115 200,200 200,410 360,325" fill="#0D3368" stroke="#4FB6EE" stroke-width="1.5"></polygon>
+<polygon points="70,150 185,212 185,330 70,268" fill="rgba(79,182,238,.12)" stroke="rgba(79,182,238,.6)"></polygon>
+<g fill="none" stroke="#4FB6EE" stroke-width="2">
+<line class="layer" x1="95" y1="250" x2="165" y2="288" style="animation-delay: 0s"></line>
+<line class="layer" x1="95" y1="236" x2="165" y2="274" style="animation-delay: .3s"></line>
+<line class="layer" x1="95" y1="222" x2="165" y2="260" style="animation-delay: .6s"></line>
+<line class="layer" x1="95" y1="208" x2="165" y2="246" style="animation-delay: .9s"></line>
+<line class="layer" x1="95" y1="194" x2="165" y2="232" style="animation-delay: 1.2s"></line>
+</g>
+<circle cx="300" cy="200" r="7" fill="#4FB6EE"></circle>
+<rect x="250" y="240" width="80" height="10" rx="5" fill="rgba(255,255,255,.18)" transform="skewY(-28) translate(0,150)"></rect>
+</svg>
+</div>
+</div>
+
+<div class="wrap" style="position: relative; margin-top: 110px">
+<p class="eyebrow reveal" style="margin: 0 0 24px; color: #A9BBD6">Fluxo digital Kulzer</p>
+<div class="grid-4">
+<a class="reveal card-link" href="https://kulzer.com.br/pt/pt/produtos/cara-print-cam-2-0.html" style="display: block; padding: 28px; border-radius: 26px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1)"><span class="disp" style="font-size: 14px; color: var(--accent); font-weight: 700">01 · Planejar</span><p class="disp" style="margin: 16px 0 8px; font-size: 24px; font-weight: 700">cara® Print CAM 2.0</p><p style="margin: 0; font-size: 15px; color: #A9BBD6; line-height: 1.5">Software para preparar e posicionar cada impressão.</p></a>
+<a class="reveal card-link" href="https://kulzer.com.br/pt/pt/produtos/cara-print-cube.html" style="display: block; padding: 28px; border-radius: 26px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1)"><span class="disp" style="font-size: 14px; color: var(--accent); font-weight: 700">02 · Imprimir</span><p class="disp" style="margin: 16px 0 8px; font-size: 24px; font-weight: 700">cara® Print Cube</p><p style="margin: 0; font-size: 15px; color: #A9BBD6; line-height: 1.5">Impressora compacta com resinas dima® Print.</p></a>
+<a class="reveal card-link" href="https://kulzer.com.br/pt/pt/produtos/cara-print-cleanup.html" style="display: block; padding: 28px; border-radius: 26px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1)"><span class="disp" style="font-size: 14px; color: var(--accent); font-weight: 700">03 · Limpar</span><p class="disp" style="margin: 16px 0 8px; font-size: 24px; font-weight: 700">cara® Print CleanUp</p><p style="margin: 0; font-size: 15px; color: #A9BBD6; line-height: 1.5">Limpeza padronizada das peças impressas.</p></a>
+<a class="reveal card-link" href="https://kulzer.com.br/pt/pt/produtos/cara-print-ledcure.html" style="display: block; padding: 28px; border-radius: 26px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1)"><span class="disp" style="font-size: 14px; color: var(--accent); font-weight: 700">04 · Polimerizar</span><p class="disp" style="margin: 16px 0 8px; font-size: 24px; font-weight: 700">cara® Print LEDcure</p><p style="margin: 0; font-size: 15px; color: #A9BBD6; line-height: 1.5">Pós-cura para propriedades finais do material.</p></a>
+</div>
+</div>
+</section>
+
+<!-- PRODUCT FINDER -->
+<section aria-label="Encontre seu produto" style="background: #F5F8FC; padding: 150px 0">
+<div class="wrap">
+<div class="reveal" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap">
+<div>
+<p class="eyebrow" style="margin: 0 0 20px; color: #0A4DA2"><span class="dot"></span>Seleção especial para você</p>
+<h2 class="disp" style="margin: 0; font-size: clamp(36px, 4.6vw, 68px); line-height: 1; font-weight: 800; color: #071B3A">Encontre o produto certo.</h2>
+</div>
+<div id="chips" role="group" aria-label="Filtrar por área" style="display: flex; gap: 8px; flex-wrap: wrap; padding: 6px; border-radius: 999px; background: #E4ECF6">
+
+</div>
+</div>
+<p id="summary" aria-live="polite" style="margin: 24px 0 40px; font-size: 16px; color: #46566E"></p>
+<div class="grid-3" id="items"></div>
+<div style="margin-top: 48px; display: flex; justify-content: center">
+<a class="btn btn-dark" href="https://kulzer.com.br/pt/pt/produtos/produtos.html">Ver todos os produtos <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+</div>
+</section>
+
+<!-- LEARN -->
+<section aria-label="Aprenda com a Kulzer" style="background: #FFFFFF; padding: 150px 0">
+<div class="wrap">
+<p class="eyebrow reveal" style="margin: 0 0 20px; color: #0A4DA2"><span class="dot"></span>Aprenda com a Kulzer Brasil</p>
+<h2 class="disp reveal" style="margin: 0 0 56px; font-size: clamp(36px, 4.6vw, 68px); line-height: 1; font-weight: 800; color: #071B3A; max-width: 800px">Educação que move a odontologia.</h2>
+<div class="grid-2" style="gap: 24px; align-items: stretch">
+<a class="reveal pcard card-link" href="https://www.youtube.com/@KulzerBrasil/videos" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 460px; padding: 40px; border-radius: 36px; background: #0A4DA2; color: #FFFFFF; overflow: hidden; border: 1px solid #0A4DA2">
+<div aria-hidden="true" style="position: absolute; top: 36px; right: 36px; width: 96px; height: 96px; border-radius: 50%; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#FFFFFF"></path></svg></div>
+<p class="disp" style="margin: 0; font-size: 120px; font-weight: 800; line-height: .9; color: var(--accent)">100+</p>
+<p class="disp" style="margin: 16px 0 0; font-size: 34px; font-weight: 750">Webinários</p>
+<p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; color: #DCE8F7; max-width: 440px">Aulas gravadas sobre os mais variados temas, com professores renomados da odontologia.</p>
+<span style="margin-top: 28px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600">Assistir no YouTube <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+<a class="reveal pcard card-link" href="https://www.ident.com.br/autor/Kulzer" style="display: flex; flex-direction: column; justify-content: flex-end; min-height: 460px; padding: 40px; border-radius: 36px; background: #EEF4FA; border: 1px solid #DDE6F1; color: #071B3A">
+<p class="disp" style="margin: 0; font-size: 72px; font-weight: 800; line-height: .9">Ident</p>
+<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #46566E; max-width: 440px">Diversos cursos Kulzer disponíveis na maior plataforma de cursos online da odontologia.</p>
+<span style="margin-top: 28px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: #0A4DA2">Acessar cursos <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- DOWNLOADS -->
+<section aria-label="Downloads" style="background: #EEF4FA; padding: 140px 0">
+<div class="wrap grid-2" style="align-items: start">
+<div class="reveal">
+<p class="eyebrow" style="margin: 0 0 20px; color: #0A4DA2"><span class="dot"></span>Downloads</p>
+<h2 class="disp" style="margin: 0; font-size: clamp(36px, 4.6vw, 68px); line-height: 1; font-weight: 800; color: #071B3A">Tudo à mão, em um só lugar.</h2>
+<p style="margin: 24px 0 0; font-size: 18px; line-height: 1.6; color: #46566E; max-width: 460px">Catálogos, instruções de uso, fichas de segurança e materiais científicos sempre atualizados.</p>
+<a class="btn btn-dark" href="https://kulzer.com.br/pt/pt/downloads/downloads.html" style="margin-top: 36px">Ir para a área de download <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<a class="reveal tile card-link" href="https://kulzer.com.br/media/brasil/documentos/catalogo-de-clinica-04-2025.pdf" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 24px 28px; border-radius: 22px; background: #F7FAFD; border: 1px solid #DDE6F1"><span><span class="disp" style="display: block; font-size: 22px; font-weight: 700; color: #071B3A">Catálogo de clínica</span><span style="font-size: 14px; color: #5A6B82">PDF · 2025</span></span><span class="arrow" aria-hidden="true" style="font-size: 22px; color: #0A4DA2">↓</span></a>
+<a class="reveal tile card-link" href="https://kulzer.com.br/media/brasil/catalogos/catalogo-de-laboratorio-09-2026.pdf" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 24px 28px; border-radius: 22px; background: #F7FAFD; border: 1px solid #DDE6F1"><span><span class="disp" style="display: block; font-size: 22px; font-weight: 700; color: #071B3A">Catálogo de laboratório</span><span style="font-size: 14px; color: #5A6B82">PDF · 2026</span></span><span class="arrow" aria-hidden="true" style="font-size: 22px; color: #0A4DA2">↓</span></a>
+<div class="grid-2" style="gap: 12px">
+<a class="reveal tile" href="https://www.kulzer.qarad.eifu.online/Kulzer/BR/pt" style="padding: 20px 22px; border-radius: 20px; background: #F7FAFD; border: 1px solid #DDE6F1; font-weight: 600; color: #071B3A">Instruções de uso (e-IFU) →</a>
+<a class="reveal tile" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=1265984" style="padding: 20px 22px; border-radius: 20px; background: #F7FAFD; border: 1px solid #DDE6F1; font-weight: 600; color: #071B3A">Informação de produto →</a>
+<a class="reveal tile" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=143552" style="padding: 20px 22px; border-radius: 20px; background: #F7FAFD; border: 1px solid #DDE6F1; font-weight: 600; color: #071B3A">Ficha de segurança →</a>
+<a class="reveal tile" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=49728" style="padding: 20px 22px; border-radius: 20px; background: #F7FAFD; border: 1px solid #DDE6F1; font-weight: 600; color: #071B3A">Informações científicas →</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NEWSLETTER + SOCIAL -->
+<section aria-label="Newsletter e redes" style="background: #071B3A; color: #FFFFFF; padding: 130px 0 90px">
+<div class="wrap">
+<div class="reveal" style="border-radius: 40px; padding: 64px; background: #0A4DA2; display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -120px; top: -120px; width: 380px; height: 380px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2)"></div>
+<div aria-hidden="true" style="position: absolute; right: -20px; top: -60px; width: 380px; height: 380px; border-radius: 50%; border: 1px solid rgba(79,182,238,.5)"></div>
+<div style="position: relative; max-width: 620px">
+<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4vw, 56px); line-height: 1; font-weight: 800">Informe-se com nossas newsletters.</h2>
+<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #DCE8F7">Lançamentos, webinários e conteúdo clínico direto no seu e-mail.</p>
+</div>
+<a class="btn" href="https://kulzer.com.br/pt/pt/newsletter-br/registration-nl.html" style="position: relative; background: #FFFFFF; color: #071B3A">Quero me inscrever <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+
+<div class="reveal" style="margin-top: 80px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap">
+<p class="disp" style="margin: 0; font-size: 30px; font-weight: 750">Siga a Kulzer Brasil</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a class="social" href="https://www.instagram.com/kulzerbrasil/" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">Instagram</a>
+<a class="social" href="https://youtube.com/kulzerbrasil" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">YouTube</a>
+<a class="social" href="https://br.linkedin.com/company/kulzerbrasil" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">LinkedIn</a>
+<a class="social" href="https://www.facebook.com/kulzerbrasil" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">Facebook</a>
+<a class="social" href="https://www.tiktok.com/@kulzerbrasil" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">TikTok</a>
+<a class="social" href="https://www.kulzerblog.com.br/" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">Blog</a>
+<a class="social" href="https://br.pinterest.com/kulzerbrasil/" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">Pinterest</a>
+<a class="social" href="https://t.me/s/kulzerbrasil" style="padding: 14px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px">Telegram</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #04122A; color: #FFFFFF; padding: 90px 0 40px">
+<div class="wrap">
+<div class="grid-4" style="gap: 40px; align-items: start">
+<div>
+<p class="disp" style="margin: 0; font-size: 34px; font-weight: 800">Kulzer</p>
+<p style="margin: 14px 0 0; font-size: 14px; line-height: 1.7; color: #A9BBD6">Uma das maiores empresas odontológicas do mundo, com uma extensa gama de produtos.</p>
+<a class="btn btn-solid" href="https://api.whatsapp.com/send?phone=5511976449072" style="margin-top: 24px; min-height: 46px; font-size: 14px">WhatsApp</a>
+</div>
+<div>
+<p style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #FFFFFF">Consultório</p>
+<a class="flink" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/charisma/charisma.html" style="display: block">Charisma®</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/gluma/gluma.html" style="display: block">GLUMA®</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/variotime/variotime.html" style="display: block">Variotime®</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/produtos-por-indicacao.html" style="display: block">Produtos por indicação</a>
+</div>
+<div>
+<p style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #FFFFFF">Laboratório & Digital</p>
+<a class="flink" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/pala/pala.html" style="display: block">Pala®</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/signum/signum.html" style="display: block">Signum®</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/heraceram/heraceram.html" style="display: block">HeraCeram®</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html" style="display: block">Impressão 3D</a>
+</div>
+<div>
+<p style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #FFFFFF">Empresa</p>
+<a class="flink" href="https://kulzer.com.br/pt/pt/empresa/nos-somos-a-kulzer/overview-company.html" style="display: block">Nós somos a Kulzer</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/empresa/localizacoes/overview-countries.html" style="display: block">Localizações</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/empresa/carreira/carreira-na-kulzer.html" style="display: block">Carreira</a>
+<a class="flink" href="https://kulzer.com.br/pt/pt/contato.html" style="display: block">Contato</a>
+</div>
+</div>
+<div style="margin-top: 64px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #A9BBD6">
+<span>© 2026 Kulzer GmbH. Todos os direitos reservados.</span>
+<span style="display: flex; gap: 20px; flex-wrap: wrap"><a class="flink" href="https://kulzer.com.br/pt/pt/imprint.html" style="font-size: 13px">Imprint</a><a class="flink" href="https://kulzer.com.br/pt/pt/data-protection-note.html" style="font-size: 13px">Proteção de dados</a><a class="flink" href="https://kulzer.com.br/pt/pt/disclaimer.html" style="font-size: 13px">Avisos legais</a></span>
+</div>
+</div>
+</footer>
+
+<a class="float" href="https://api.whatsapp.com/send?phone=5511976449072" aria-label="Fale com a Kulzer pelo WhatsApp" style="position: fixed; right: 22px; bottom: 22px; z-index: 55; width: 60px; height: 60px; border-radius: 50%; background: #1FAF5A; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 30px -10px rgba(0,0,0,.5)">
+<svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.9 7l-4.1 1 1.1-4A8 8 0 1 1 20 12z" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.8a3.5 3.5 0 0 1-2-2l.8-.8-1-2z" fill="#FFFFFF"></path></svg>
+</a>
+
+</div>
+<script>
+(function(){
+var base='https://kulzer.com.br/pt/pt/produtos/';
+var P=[
+      { g: 'clinica', cat: 'Resina composta', name: 'Charisma® E4SY', desc: 'Com apenas 4 cores, corresponde a diferentes tonalidades da escala VITA®.', slug: 'charisma-e4sy', isNew: false },
+      { g: 'clinica', cat: 'Resina composta', name: 'Charisma® Diamond ONE', desc: 'Resina direta da família Charisma® para restaurações estéticas.', slug: 'charisma-diamond-one', isNew: false },
+      { g: 'clinica', cat: 'Resina fluida', name: 'Charisma® Bulk Flow ONE', desc: 'Resina direta bulk-fill da linha Charisma®.', slug: 'charisma-bulk-flow-one', isNew: false },
+      { g: 'clinica', cat: 'Adesivo', name: 'GLUMA® Bond Universal', desc: 'Adesivo universal para a rotina restauradora.', slug: 'gluma-bond-universal', isNew: false },
+      { g: 'clinica', cat: 'Dessensibilizante', name: 'GLUMA® Desensitizer', desc: 'Prevenção e tratamento da sensibilidade dentinária.', slug: 'gluma-desensitizer', isNew: false },
+      { g: 'clinica', cat: 'Silicone de adição', name: 'Variotime®', desc: 'Material de moldagem com silicone de adição.', slug: 'variotime', isNew: false },
+      { g: 'clinica', cat: 'Registro de mordida', name: 'Variotime® Bite', desc: 'Silicone de adição para registro de mordida.', slug: 'variotime-bite', isNew: false },
+      { g: 'clinica', cat: 'Silicone de condensação', name: 'Optosil® / Xantopren®', desc: 'Sistema de moldagem com silicone de condensação.', slug: 'optosil-xantopren', isNew: false },
+      { g: 'clinica', cat: 'Equipamento', name: 'Dynamix® Speed 2', desc: 'Equipamento para mistura de materiais de moldagem.', slug: 'dynamix-speed-2', isNew: false },
+      { g: 'lab', cat: 'Pigmento cerâmico', name: 'HeraCeram® cre-active', desc: 'Individualização estética em cerâmica simplificada.', slug: 'heraceram-cre-active', isNew: false },
+      { g: 'lab', cat: 'Dente acrílico', name: 'Delara®', desc: 'Linha de dentes altamente estética, com aparência viva e natural.', slug: 'delara', isNew: false },
+      { g: 'lab', cat: 'Metal free', name: 'HeraCeram® Zirkonia 750', desc: 'Cerâmica de recobrimento para estruturas em zircônia.', slug: 'heraceram-zirkonia-750', isNew: false },
+      { g: 'lab', cat: 'Metalocerâmica', name: 'HeraCeram® Saphir', desc: 'Cerâmica para restaurações metalocerâmicas.', slug: 'heraceram-saphir', isNew: false },
+      { g: 'lab', cat: 'Resina indireta', name: 'Signum® composite', desc: 'Restaurações de resina indireta sobre estrutura de metal.', slug: 'signum-composite', isNew: false },
+      { g: 'lab', cat: 'Agente de união', name: 'Signum® zirconia bond', desc: 'União confiável entre resina e zircônia.', slug: 'signum-zirconia-bond', isNew: false },
+      { g: 'lab', cat: 'Resina acrílica', name: 'PalaXpress®', desc: 'Resina acrílica auto-polimerizável para próteses.', slug: 'palaxpress', isNew: false },
+      { g: 'lab', cat: 'Forno para cerâmica', name: 'Austromat 654 press-i-dent', desc: 'Forno para queima e prensagem de cerâmica.', slug: 'austromat-654-press-i-dent', isNew: false },
+      { g: 'lab', cat: 'Equipamento', name: 'Palamat® Premium', desc: 'Equipamento para polimerização de próteses em acrílico.', slug: 'palamat-premium', isNew: false },
+      { g: 'digital', cat: 'Impressora 3D', name: 'cara® Print Cube', desc: 'Compacta e precisa, com capacidade para cinco modelos.', slug: 'cara-print-cube', isNew: true },
+      { g: 'digital', cat: 'Software', name: 'cara® Print CAM 2.0', desc: 'Software para impressão 3D do fluxo Kulzer.', slug: 'cara-print-cam-2-0', isNew: false },
+      { g: 'digital', cat: 'Pós-processamento', name: 'cara® Print CleanUp', desc: 'Limpeza padronizada das peças impressas.', slug: 'cara-print-cleanup', isNew: false },
+      { g: 'digital', cat: 'Pós-cura', name: 'cara® Print LEDcure', desc: 'Polimerização final das peças impressas.', slug: 'cara-print-ledcure', isNew: false },
+      { g: 'digital', cat: 'Resina 3D', name: 'dima® Print Digital Denture', desc: 'Resina para próteses totais impressas.', slug: 'dima-print-digital-denture', isNew: false },
+      { g: 'digital', cat: 'Resina 3D', name: 'dima® Print Splint clear', desc: 'Resina transparente para placas oclusais.', slug: 'dima-print-splint-clear', isNew: false },
+      { g: 'digital', cat: 'Resina 3D', name: 'dima® Print Guide & Tray', desc: 'Guias cirúrgicos e moldeiras individuais.', slug: 'dima-print-guide-and-tray', isNew: false },
+      { g: 'digital', cat: 'Resina 3D', name: 'dima® Print Stone beige', desc: 'Resina para modelos de alta precisão.', slug: 'dima-print-stone-beige', isNew: false },
+      { g: 'digital', cat: 'Revestimento', name: 'Heravest® M Print+', desc: 'Revestimento para prótese parcial impressa em 3D.', slug: 'heravest-m-print', isNew: false }
+    ];
+var defs=[{id:'clinica',label:'Consultório'},{id:'lab',label:'Laboratório'},{id:'digital',label:'Digital / 3D'}];
+var on='border:none;background:#071B3A;color:#FFFFFF;box-shadow:0 8px 20px -10px rgba(7,27,58,.6)';
+var off='border:none;background:transparent;color:#071B3A';
+var chipsEl=document.getElementById('chips'),itemsEl=document.getElementById('items'),sumEl=document.getElementById('summary');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function render(f){
+ chipsEl.innerHTML=defs.map(function(d){return '<button class="chip" type="button" data-id="'+d.id+'" aria-pressed="'+(d.id===f)+'" style="'+(d.id===f?on:off)+'">'+d.label+'</button>';}).join('');
+ var items=P.filter(function(p){return p.g===f;});
+ itemsEl.innerHTML=items.map(function(p,i){return '<a class="pcard card-link fade-in" href="'+base+p.slug+'.html" style="animation-delay:'+(i*40)+'ms;display:flex;flex-direction:column;justify-content:space-between;min-height:230px;padding:28px;border-radius:28px;background:#FFFFFF;border:1px solid #DDE6F1"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0A4DA2">'+esc(p.cat)+'</span>'+(p.isNew?'<span style="padding:6px 12px;border-radius:999px;background:#071B3A;color:#FFFFFF;font-size:12px;font-weight:600">Novo</span>':'')+'</div><div><p class="disp" style="margin:0;font-size:28px;font-weight:750;color:#071B3A;line-height:1.1">'+esc(p.name)+'</p><p style="margin:10px 0 0;font-size:15px;line-height:1.5;color:#46566E">'+esc(p.desc)+'</p></div><span style="display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:#0A4DA2">Detalhes <span class="arrow" aria-hidden="true">→</span></span></a>';}).join('');
+ var label=defs.filter(function(d){return d.id===f;})[0].label;
+ sumEl.textContent=items.length+' soluções em destaque para '+label+'.';
+}
+chipsEl.addEventListener('click',function(e){var b=e.target.closest('button[data-id]');if(b)render(b.dataset.id);});
+render('clinica');
+})();
+</script>
+</body>
+</html>
