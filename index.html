@@ -3,343 +3,366 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bem-vindo à Kulzer! | Kulzer Brasil</title>
+<title>Kulzer Brasil — Saúde bucal nas melhores mãos</title>
 <meta name="description" content="A Kulzer é uma das maiores empresas odontológicas do mundo, que fornece uma extensa gama de produtos.">
-<meta name="theme-color" content="#B1C127">
+<meta name="theme-color" content="#18181A">
 <link rel="icon" href="https://kulzer.com.br/media/system-files/img/favicons/favicon-32x32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"}}</script>
 <style>
 :root{
   --lime:#B1C127; --lime-2:#C9D933; --lime-ink:#5F6A0A; --lime-soft:#F1F5D6;
-  --gray:#575756; --gray-dark:#272729; --gray-2:#3A3A39; --gray-mid:#919190;
-  --line:#D9D9D9; --bg:#F2F2F2; --white:#FFFFFF;
-  --r-lg:32px; --r-md:20px;
+  --gray:#575756; --ink:#232325; --mid:#8C8C8B; --line:#E2E2E1; --bg:#F3F3F2;
+  --night:#18181A; --night-2:#222224;
   --ease:cubic-bezier(.2,.8,.2,1);
-  --cond:'Roboto Condensed', 'Arial Narrow', sans-serif;
+  --cond:'Roboto Condensed','Arial Narrow',sans-serif;
+  --pad:clamp(16px,4vw,48px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Roboto, system-ui, sans-serif;color:var(--gray);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;font-family:Roboto,system-ui,sans-serif;color:var(--gray);background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-.wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 32px}
-.cond{font-family:var(--cond)}
-:focus-visible{outline:3px solid var(--lime);outline-offset:3px;border-radius:6px}
+button{font:inherit;color:inherit}
+.wrap{width:100%;max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px;border-radius:8px}
 
-/* Section title — Kulzer style: uppercase condensed, letterspaced, lime bar */
-.kicker{display:inline-flex;align-items:center;gap:14px;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--lime-ink)}
-.kicker::before{content:"";width:4px;height:30px;border-radius:2px;background:var(--lime)}
-.on-dark .kicker{color:var(--lime-2)}
-.h-xl{font-family:var(--cond);font-weight:700;font-size:clamp(44px,6.4vw,104px);line-height:.95;letter-spacing:-.01em;margin:0;color:var(--gray-dark)}
-.h-lg{font-family:var(--cond);font-weight:700;font-size:clamp(36px,4.4vw,64px);line-height:1;margin:0;color:var(--gray-dark)}
-.h-md{font-family:var(--cond);font-weight:700;font-size:clamp(26px,2.4vw,34px);line-height:1.1;margin:0;color:var(--gray-dark)}
-.lead{font-size:18px;line-height:1.65;color:var(--gray)}
-.on-dark .h-xl,.on-dark .h-lg,.on-dark .h-md{color:#fff}
-.on-dark .lead{color:#D6D6D5}
+/* ---------- type ---------- */
+.kicker{display:inline-flex;align-items:center;gap:12px;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--lime-ink)}
+.kicker::before{content:"";width:4px;height:26px;border-radius:2px;background:var(--lime)}
+.dark .kicker{color:var(--lime-2)}
+.h2{font-family:var(--cond);font-weight:700;font-size:clamp(40px,5vw,76px);line-height:.98;letter-spacing:-.01em;margin:18px 0 0;color:var(--ink)}
+.dark .h2{color:#fff}
+.lead{font-size:clamp(16px,1.3vw,18.5px);line-height:1.65;color:var(--gray);margin:0}
+.dark .lead{color:#C9C9C8}
+.wm{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.wi{display:inline-block;will-change:transform}
 
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-family:var(--cond);font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:2px solid transparent;transition:transform .35s var(--ease),background .25s,color .25s,box-shadow .35s}
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;border:2px solid transparent;font-family:var(--cond);font-weight:700;font-size:14.5px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:transform .4s var(--ease),background .25s,color .25s,border-color .25s,box-shadow .4s}
 .btn:hover{transform:translateY(-2px)}
-.btn .ar{transition:transform .35s var(--ease)}
-.btn:hover .ar,.card:hover .ar{transform:translateX(5px)}
-.btn-lime{background:var(--lime);color:var(--gray-dark);box-shadow:0 14px 30px -14px rgba(177,193,39,.9)}
+.btn .ar{transition:transform .4s var(--ease)}
+.btn:hover .ar,a:hover>.go .ar{transform:translateX(5px)}
+.btn-lime{background:var(--lime);color:var(--ink);box-shadow:0 16px 34px -16px rgba(177,193,39,.95)}
 .btn-lime:hover{background:var(--lime-2)}
-.btn-line{border-color:var(--lime);color:var(--gray-dark);background:transparent}
-.btn-line:hover{background:var(--lime)}
-.btn-white{border-color:rgba(255,255,255,.6);color:#fff}
-.btn-white:hover{background:#fff;color:var(--gray-dark)}
+.btn-ghost{border-color:rgba(255,255,255,.38);color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
+.btn-line{border-color:var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:#fff}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#000}
 
-/* HEADER */
-.topbar{position:fixed;inset:0 0 auto 0;z-index:80;transition:background .35s,box-shadow .35s,transform .45s var(--ease)}
-.topbar.scrolled{background:rgba(255,255,255,.86);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);box-shadow:0 1px 0 var(--line)}
-.topbar.hide{transform:translateY(-100%)}
-.topbar-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:84px}
-.brand{display:flex;align-items:center;gap:18px}
-.brand img{height:42px;width:auto}
-.brand .claim{font-family:var(--cond);font-size:14px;color:var(--gray-mid);padding-left:18px;border-left:1px solid var(--line);white-space:nowrap}
-.mainnav{display:flex;align-items:center;gap:2px}
-.mainnav>.item{position:relative}
-.mainnav .lnk{display:flex;align-items:center;gap:6px;padding:12px 14px;border-radius:999px;font-family:var(--cond);font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);transition:background .25s,color .25s;background:none;border:0;cursor:pointer}
-.mainnav .lnk:hover,.mainnav .item:focus-within .lnk{background:var(--lime-soft);color:var(--gray-dark)}
-.mega{position:absolute;top:calc(100% + 12px);left:50%;width:min(640px,90vw);transform:translate(-50%,10px);opacity:0;visibility:hidden;background:#fff;border-radius:var(--r-md);box-shadow:0 30px 70px -30px rgba(39,39,41,.45);border:1px solid var(--line);padding:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;transition:opacity .3s,transform .35s var(--ease),visibility .3s}
-.mega::before{content:"";position:absolute;inset:-14px 0 auto 0;height:14px}
-.item:hover .mega,.item:focus-within .mega{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.mega h4{margin:0 0 10px;font-family:var(--cond);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--lime-ink)}
+/* ---------- header (always solid, high contrast) ---------- */
+.hdr{position:fixed;top:14px;left:0;right:0;z-index:90;padding:0 var(--pad);transition:transform .5s var(--ease)}
+.hdr.hide{transform:translateY(-130%)}
+.hdr-in{max-width:1360px;margin:0 auto;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 10px 0 26px;border-radius:999px;background:rgba(255,255,255,.97);box-shadow:0 18px 40px -22px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.05)}
+.logo{display:flex;align-items:center;gap:16px;flex:none}
+.logo img{height:36px;width:auto}
+.logo .claim{font-family:var(--cond);font-size:14px;color:var(--gray);padding-left:16px;border-left:1px solid var(--line);white-space:nowrap}
+.nav{display:flex;align-items:center;gap:2px}
+.nav .it{position:relative}
+.nav .lk{display:block;padding:11px 13px;border-radius:999px;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);white-space:nowrap;transition:background .25s}
+.nav .it:hover .lk,.nav .it:focus-within .lk{background:var(--lime-soft)}
+.mega{position:absolute;top:calc(100% + 18px);left:50%;width:min(620px,92vw);transform:translate(-50%,12px);opacity:0;visibility:hidden;background:#fff;border-radius:24px;box-shadow:0 40px 80px -30px rgba(0,0,0,.4),0 0 0 1px rgba(0,0,0,.05);padding:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;transition:opacity .3s,transform .4s var(--ease),visibility .3s}
+.mega::before{content:"";position:absolute;left:0;right:0;top:-20px;height:20px}
+.it:hover .mega,.it:focus-within .mega{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.mega h4{margin:0 0 8px;font-family:var(--cond);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime-ink)}
 .mega a{display:block;padding:7px 10px;margin:0 -10px;border-radius:10px;font-size:15px;color:var(--gray);transition:background .2s,color .2s}
-.mega a:hover{background:var(--bg);color:var(--gray-dark)}
-.mega .feat{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;margin:0;border-radius:14px;background:var(--lime-soft);font-family:var(--cond);font-weight:700;color:var(--gray-dark)}
-.tools{display:flex;align-items:center;gap:8px}
-.ico{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--gray);transition:background .25s,color .25s,transform .3s var(--ease)}
-.ico:hover{background:var(--lime);color:var(--gray-dark);transform:translateY(-2px)}
-.ico svg{width:20px;height:20px}
-.ico.lime{background:var(--lime);color:var(--gray-dark)}
+.mega a:hover{background:var(--bg);color:var(--ink)}
+.mega .ft{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;margin:0;padding:15px 18px;border-radius:14px;background:var(--lime);color:var(--ink);font-family:var(--cond);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:14px}
+.mega .ft:hover{background:var(--lime-2);color:var(--ink)}
+.tools{display:flex;align-items:center;gap:6px;flex:none}
+.ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--ink);border:0;cursor:pointer;transition:background .25s,transform .35s var(--ease)}
+.ic:hover{background:var(--lime);transform:translateY(-2px)}
+.ic svg{width:20px;height:20px}
+.ic.lime{background:var(--lime)}
 .burger{display:none}
-
-/* Drawer (mobile) */
-.drawer{position:fixed;inset:0;z-index:90;background:#fff;transform:translateX(100%);transition:transform .5s var(--ease);overflow-y:auto;padding:24px 20px 60px}
+.drawer{position:fixed;inset:0;z-index:95;background:#fff;padding:22px var(--pad) 60px;overflow-y:auto;transform:translateX(100%);transition:transform .55s var(--ease)}
 .drawer.open{transform:none}
 .drawer details{border-bottom:1px solid var(--line)}
-.drawer summary{list-style:none;padding:20px 0;font-family:var(--cond);font-weight:700;font-size:22px;text-transform:uppercase;color:var(--gray-dark);cursor:pointer;display:flex;justify-content:space-between}
+.drawer summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;padding:20px 0;font-family:var(--cond);font-weight:700;font-size:24px;text-transform:uppercase;color:var(--ink)}
 .drawer summary::-webkit-details-marker{display:none}
+.drawer details div{padding:0 0 16px}
 .drawer details a{display:block;padding:8px 0;font-size:16px}
-.drawer details div{padding-bottom:16px}
-.drawer>a.d{display:block;padding:20px 0;border-bottom:1px solid var(--line);font-family:var(--cond);font-weight:700;font-size:22px;text-transform:uppercase;color:var(--gray-dark)}
+.drawer .d{display:block;padding:20px 0;border-bottom:1px solid var(--line);font-family:var(--cond);font-weight:700;font-size:24px;text-transform:uppercase;color:var(--ink)}
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--lime);transform:scaleX(0);transform-origin:0 50%;z-index:100}
 
-/* HERO */
-.hero{position:relative;height:100svh;min-height:680px;max-height:1000px;overflow:hidden;background:var(--gray-dark);color:#fff}
-.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s ease,visibility 1.1s}
-.slide.active{opacity:1;visibility:visible}
-.slide .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.12);transition:transform 7s linear}
-.slide.active .bg{transform:scale(1)}
-.slide .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(39,39,41,.86) 0%,rgba(39,39,41,.55) 42%,rgba(39,39,41,0) 75%)}
-.slide .copy{position:absolute;inset:0;display:flex;align-items:center}
-.slide .copy .wrap>*{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.slide.active .copy .wrap>*{opacity:1;transform:none}
-.slide.active .copy .wrap>*:nth-child(2){transition-delay:.12s}
-.slide.active .copy .wrap>*:nth-child(3){transition-delay:.24s}
-.slide.active .copy .wrap>*:nth-child(4){transition-delay:.36s}
-.hero .tag{display:inline-block;padding:8px 16px;border-radius:999px;background:var(--lime);color:var(--gray-dark);font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
-.hero h1,.hero h2.ht{font-family:var(--cond);font-weight:700;font-size:clamp(48px,7.4vw,120px);line-height:.92;margin:24px 0 0;max-width:820px}
-.hero h1 em,.hero h2.ht em{font-style:normal;color:var(--lime-2)}
-.hero p{max-width:520px;font-size:19px;line-height:1.6;color:#E4E4E3;margin:24px 0 0}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.hero-ui{position:absolute;left:0;right:0;bottom:110px;z-index:5}
-.hero-ui .wrap{display:flex;align-items:center;gap:26px}
-.dots{display:flex;gap:14px;flex:1;max-width:640px}
-.dot{flex:1;min-width:0;background:none;border:0;padding:12px 0 0;cursor:pointer;text-align:left;color:#C8C8C7;font-family:var(--cond);font-size:14px;letter-spacing:.06em;text-transform:uppercase}
-.dot .trk{display:block;height:3px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden;margin-bottom:10px}
-.dot .trk i{display:block;height:100%;width:0;background:var(--lime)}
-.dot.active{color:#fff}
-.dot.active .trk i{animation:fill var(--dur,7s) linear forwards}
-.hero.paused .dot.active .trk i{animation-play-state:paused}
-.pp{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer}
-.pp:hover{background:rgba(255,255,255,.12)}
-@keyframes fill{to{width:100%}}
-.globes{position:absolute;left:0;right:0;bottom:-1px;z-index:4;pointer-events:none}
-.globes svg{width:100%;height:auto;display:block}
-.g1{animation:bob 9s ease-in-out infinite}
-.g2{animation:bob 11s ease-in-out -3s infinite}
-.g3{animation:bob 13s ease-in-out -6s infinite}
-@keyframes bob{50%{transform:translateY(-10px)}}
+/* ---------- HERO 3D ---------- */
+.hero{position:relative;height:100svh;min-height:760px;max-height:1100px;background:var(--night);color:#fff;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 70% at 72% 48%,rgba(177,193,39,.20),rgba(177,193,39,0) 60%),radial-gradient(80% 80% at 20% 100%,rgba(255,255,255,.05),rgba(255,255,255,0) 60%)}
+.hero.no-gl::after{content:"";position:absolute;right:8%;top:22%;width:42vw;height:42vw;max-width:560px;max-height:560px;border-radius:50%;border:1px solid rgba(201,217,51,.5);box-shadow:inset 0 0 120px rgba(177,193,39,.25);z-index:-1}
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:-1;touch-action:pan-y;cursor:grab}
+#gl.drag{cursor:grabbing}
+.hero-copy{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:96px;padding-bottom:190px;pointer-events:none}
+.hero-copy a,.hero-copy button{pointer-events:auto}
+.hstack{display:grid;max-width:620px}
+.hs{grid-area:1/1;visibility:hidden}
+.hs.active{visibility:visible}
+.tag{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:8px 16px 8px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-family:var(--cond);font-weight:700;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:#E9E9E8}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(177,193,39,.25)}
+.ht{font-family:var(--cond);font-weight:700;font-size:clamp(48px,5.8vw,96px);line-height:.94;letter-spacing:-.015em;margin:26px 0 0;color:#fff}
+.hsub{font-family:var(--cond);font-weight:700;font-size:clamp(26px,2.6vw,42px);line-height:1.05;margin:12px 0 0;color:var(--lime-2)}
+.hp{font-size:18px;line-height:1.65;color:#CFCFCE;max-width:480px;margin:22px 0 0}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-ui{position:absolute;left:0;right:0;bottom:150px;z-index:3}
+.hero-ui .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.snav{display:flex;gap:8px;flex:1;max-width:760px}
+.sb{flex:1;min-width:0;text-align:left;background:none;border:0;padding:0 0 4px;cursor:pointer;color:#9B9B9A;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;transition:color .3s}
+.sb b{display:block;font-size:12px;color:#6E6E6D;margin-bottom:8px;transition:color .3s}
+.sb .tr{display:block;height:2px;background:rgba(255,255,255,.18);margin-bottom:12px;overflow:hidden;border-radius:2px}
+.sb .tr i{display:block;height:100%;background:var(--lime);transform:scaleX(0);transform-origin:0 50%}
+.sb.on,.sb:hover{color:#fff}
+.sb.on b{color:var(--lime-2)}
+.sb span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hctl{display:flex;align-items:center;gap:10px}
+.round{width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.04);display:grid;place-items:center;cursor:pointer;color:#fff;transition:background .25s,border-color .25s}
+.round:hover{background:#fff;color:var(--ink);border-color:#fff}
+.hint{display:flex;align-items:center;gap:10px;margin-right:8px;font-family:var(--cond);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#9B9B9A;transition:opacity .6s}
+.hint.gone{opacity:0}
+.hint svg{animation:sway 2.4s ease-in-out infinite}
+@keyframes sway{50%{transform:translateX(6px)}}
+.globes{position:absolute;left:0;right:0;bottom:-2px;z-index:2;pointer-events:none;line-height:0}
+.globes svg{width:100%;height:clamp(56px,7vw,110px);display:block}
 
-/* Marquee */
-.marquee{background:#fff;overflow:hidden;padding:30px 0 34px;border-bottom:1px solid var(--line)}
-.mq{display:flex;gap:70px;width:max-content;animation:mq 42s linear infinite;font-family:var(--cond);font-weight:700;font-size:clamp(28px,3vw,42px);color:#BDBDBC;white-space:nowrap}
-.mq span:nth-child(even){color:var(--lime)}
-.marquee:hover .mq{animation-play-state:paused}
-@keyframes mq{to{transform:translateX(-50%)}}
+/* ---------- marquee ---------- */
+.mq-wrap{overflow:hidden;background:#fff;padding:34px 0 38px}
+.mq{display:flex;width:max-content;will-change:transform}
+.mq span{font-family:var(--cond);font-weight:700;font-size:clamp(32px,3.6vw,56px);color:#C4C4C3;padding-right:56px;white-space:nowrap;display:flex;align-items:center;gap:56px}
+.mq span::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--lime)}
 
-/* Audience expanding panels */
-.sec{padding:130px 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:56px}
-.sec-head .lead{max-width:420px;margin:0}
-.panels{display:flex;gap:16px;height:620px}
-.panel{position:relative;flex:1;border-radius:var(--r-lg);overflow:hidden;color:#fff;transition:flex 0.8s var(--ease);isolation:isolate;min-width:0}
-.panel:hover,.panel:focus-within,.panel.is-open{flex:2.4}
-.panels:hover .panel.is-open:not(:hover){flex:1}
-.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
-.panel:hover img{transform:scale(1.06)}
-.panel::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(39,39,41,0) 30%,rgba(39,39,41,.9) 100%)}
-.panel .in{position:absolute;inset:auto 0 0 0;padding:36px}
-.panel .num{font-family:var(--cond);font-weight:700;font-size:15px;letter-spacing:.2em;color:var(--lime-2)}
-.panel h3{font-family:var(--cond);font-weight:700;font-size:clamp(28px,2.6vw,40px);line-height:1.02;margin:10px 0 0}
-.panel .more{max-height:0;opacity:0;overflow:hidden;transition:max-height .8s var(--ease),opacity .5s}
-.panel:hover .more,.panel:focus-within .more,.panel.is-open .more{max-height:320px;opacity:1}
-.panels:hover .panel.is-open:not(:hover) .more{max-height:0;opacity:0}
-.panel .more p{font-size:16px;line-height:1.6;color:#E4E4E3;max-width:460px;margin:14px 0 0}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
-.chips a{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);font-size:14px;transition:background .2s,color .2s}
-.chips a:hover{background:var(--lime);color:var(--gray-dark)}
+/* ---------- statement ---------- */
+.statement{padding:clamp(90px,12vw,170px) 0 clamp(70px,8vw,120px)}
+.stmt{font-family:var(--cond);font-weight:700;font-size:clamp(38px,5.4vw,88px);line-height:1.02;letter-spacing:-.01em;color:var(--ink);margin:26px 0 0;max-width:1200px}
+.stmt .w{opacity:.14;transition:opacity .2s}
+.stmt .hl{color:var(--lime)}
+.stmt-foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:56px}
+.stmt-foot .lead{grid-column:7/span 5}
 
-/* Products */
-.products{background:var(--bg)}
-.tabs{display:inline-flex;gap:6px;padding:6px;border-radius:999px;background:#fff;border:1px solid var(--line)}
-.tab{min-height:46px;padding:0 20px;border-radius:999px;border:0;background:transparent;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);cursor:pointer;transition:background .3s,color .3s}
-.tab[aria-selected="true"]{background:var(--lime);color:var(--gray-dark)}
-.pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.card{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:var(--r-md);overflow:hidden;border:1px solid transparent;transition:transform .5s var(--ease),box-shadow .5s,border-color .3s}
-.card:hover{transform:translateY(-8px);box-shadow:0 40px 60px -40px rgba(39,39,41,.5);border-color:var(--lime)}
-.card .media{aspect-ratio:4/3;background:#fff;display:grid;place-items:center;padding:24px;overflow:hidden}
-.card .media img{max-height:100%;object-fit:contain;transition:transform .8s var(--ease)}
-.card:hover .media img{transform:scale(1.07)}
-.card .body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px;flex:1;border-top:1px solid var(--bg)}
-.card .cat{font-family:var(--cond);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime-ink);font-weight:700}
-.card .name{font-family:var(--cond);font-weight:700;font-size:25px;color:var(--gray-dark);line-height:1.1}
-.card .claim{font-weight:500;color:var(--gray-dark);font-size:15px}
-.card .desc{font-size:14.5px;line-height:1.55;margin:0}
-.card .go{margin-top:auto;padding-top:14px;display:inline-flex;align-items:center;gap:8px;font-family:var(--cond);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:14px;color:var(--lime-ink)}
-.new{position:absolute;top:16px;left:16px;padding:6px 12px;border-radius:999px;background:var(--lime);color:var(--gray-dark);font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-.fade-swap{animation:swap .55s var(--ease) both}
-@keyframes swap{from{opacity:0;transform:translateY(20px)}}
+/* ---------- audiences ---------- */
+.aud{padding:0 0 clamp(90px,10vw,150px)}
+.aud-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.ac{position:relative;display:flex;flex-direction:column;min-height:640px;border-radius:32px;background:var(--bg);overflow:hidden;padding:34px;transition:background .5s var(--ease)}
+.ac:hover{background:var(--lime-soft)}
+.ac .num{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.24em;color:var(--lime-ink)}
+.ac h3{font-family:var(--cond);font-weight:700;font-size:clamp(30px,2.6vw,40px);line-height:1.02;color:var(--ink);margin:14px 0 0}
+.ac p{font-size:16px;line-height:1.6;margin:14px 0 0;max-width:360px}
+.ac .pic{flex:1;display:flex;align-items:center;justify-content:center;margin:20px -10px;min-height:220px}
+.ac .pic img{width:100%;max-height:260px;object-fit:contain;mix-blend-mode:multiply;transition:transform 1s var(--ease)}
+.ac:hover .pic img{transform:scale(1.06) rotate(-1.5deg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chips a{padding:8px 14px;border-radius:999px;background:#fff;font-size:14px;color:var(--ink);transition:background .2s}
+.chips a:hover{background:var(--lime)}
+.ac .btn{align-self:flex-start}
 
-/* Cube showcase - dark, pinned storytelling */
-.cube{background:var(--gray-dark);color:#fff;position:relative;overflow:hidden}
-.cube .arc{position:absolute;right:-220px;top:-220px;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(177,193,39,.35),rgba(177,193,39,0) 65%)}
-.story{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:80px;position:relative}
-.story .stick{position:sticky;top:110px;height:calc(100vh - 140px);max-height:760px;display:flex;align-items:center}
-.stage{position:relative;width:100%;aspect-ratio:1/1;border-radius:var(--r-lg);background:#fff;overflow:hidden}
-.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 1.2s var(--ease)}
-.stage img.on{opacity:1;transform:none}
-.stage .badge{position:absolute;left:20px;bottom:20px;padding:10px 16px;border-radius:999px;background:rgba(39,39,41,.8);backdrop-filter:blur(8px);font-family:var(--cond);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px}
-.steps{padding:6vh 0}
-.step{min-height:70vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .6s}
-.step.on{opacity:1}
-.step .n{font-family:var(--cond);font-weight:700;color:var(--lime-2);letter-spacing:.2em;font-size:14px}
-.step h3{font-family:var(--cond);font-weight:700;font-size:clamp(34px,3.6vw,56px);line-height:1;margin:14px 0 0}
-.step p{font-size:18px;line-height:1.65;color:#D6D6D5;max-width:480px;margin:20px 0 0}
-.stats{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap}
-.stat{padding:18px 22px;border-radius:18px;border:1px solid rgba(255,255,255,.14)}
-.stat b{display:block;font-family:var(--cond);font-size:42px;color:var(--lime-2);line-height:1}
-.stat span{font-size:14px;color:#C8C8C7}
+/* ---------- products (horizontal) ---------- */
+.prod{background:var(--bg);overflow:hidden}
+.prod-in{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 70px}
+.prod-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:44px}
+.tabs{display:inline-flex;flex-wrap:wrap;gap:4px;padding:5px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.tab{min-height:46px;padding:0 20px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-family:var(--cond);font-weight:700;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);transition:background .3s,color .3s}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+.track-wrap{padding-left:max(var(--pad),calc((100vw - 1360px)/2 + var(--pad)))}
+.track{display:flex;gap:20px;width:max-content;padding-right:var(--pad)}
+.card{position:relative;flex:none;width:clamp(280px,26vw,380px);display:flex;flex-direction:column;background:#fff;border-radius:26px;overflow:hidden;transition:transform .55s var(--ease),box-shadow .55s}
+.card:hover{transform:translateY(-10px);box-shadow:0 46px 70px -46px rgba(0,0,0,.55)}
+.card .media{aspect-ratio:16/11;display:grid;place-items:center;padding:22px;overflow:hidden;background:#fff}
+.card .media img{width:100%;height:100%;object-fit:contain;transition:transform .9s var(--ease)}
+.card:hover .media img{transform:scale(1.08)}
+.card .bd{padding:22px 26px 26px;display:flex;flex-direction:column;gap:6px;flex:1;border-top:1px solid var(--bg)}
+.card .cat{font-family:var(--cond);font-weight:700;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime-ink)}
+.card .nm{font-family:var(--cond);font-weight:700;font-size:27px;line-height:1.08;color:var(--ink)}
+.card .cl{font-weight:500;color:var(--ink);font-size:15px}
+.card .ds{font-size:14.5px;line-height:1.55;margin:4px 0 0}
+.go{margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:8px;font-family:var(--cond);font-weight:700;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.go .ar{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--lime);transition:transform .4s var(--ease)}
+.badge-new{position:absolute;top:16px;left:16px;z-index:1;padding:6px 12px;border-radius:999px;background:var(--lime);color:var(--ink);font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.card.all{justify-content:center;align-items:flex-start;padding:34px;background:var(--ink);color:#fff}
+.card.all .nm{color:#fff;font-size:34px}
+.prod-foot{display:flex;align-items:center;gap:20px;margin-top:40px}
+.pbar{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.pbar i{display:block;height:100%;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:0 50%}
+.pcount{font-family:var(--cond);font-weight:700;letter-spacing:.14em;font-size:13px;color:var(--ink);text-transform:uppercase}
 
-/* Learn */
-.learn-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.lcard{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:520px;color:#fff;display:flex;align-items:flex-end;isolation:isolate}
-.lcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
-.lcard:hover img{transform:scale(1.05)}
-.lcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(39,39,41,.1),rgba(39,39,41,.88))}
-.lcard .in{padding:40px}
-.lcard .big{font-family:var(--cond);font-weight:700;font-size:clamp(64px,7vw,110px);line-height:.9;color:var(--lime-2)}
-.lcard h3{font-family:var(--cond);font-weight:700;font-size:34px;margin:10px 0 0}
-.lcard p{font-size:16.5px;line-height:1.6;color:#E4E4E3;max-width:440px}
+/* ---------- digital flow (dark, pinned) ---------- */
+.flow{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.flow-in{min-height:100vh;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr auto;column-gap:24px;row-gap:28px;align-items:center;padding:110px 0 48px}
+.flow-head{grid-column:1/-1;grid-row:1;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.stage{grid-column:1/span 6;grid-row:2/span 2;position:relative;height:min(58vh,600px);width:min(100%,calc(58vh * 1.15));justify-self:center;perspective:1200px}
+.stage .card3d{position:absolute;inset:0;border-radius:32px;background:#fff;overflow:hidden;transform-style:preserve-3d;box-shadow:0 60px 120px -50px rgba(177,193,39,.45)}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:9%}
+.stage img:not(:first-child){opacity:0}
+.stage .ring{position:absolute;inset:-7%;border-radius:50%;border:1px solid rgba(201,217,51,.35);pointer-events:none}
+.stage .ring.r2{inset:-15%;border-color:rgba(201,217,51,.18)}
+.steps{grid-column:8/span 5;grid-row:2;position:relative;min-height:400px}
+.step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center}
+.step:not(:first-child){opacity:0;visibility:hidden}
+.step .n{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.24em;color:var(--lime-2)}
+.step h3{font-family:var(--cond);font-weight:700;font-size:clamp(36px,3.8vw,60px);line-height:1;margin:14px 0 0;color:#fff}
+.step p{font-size:17.5px;line-height:1.65;color:#C9C9C8;margin:18px 0 0;max-width:480px}
+.step .mimg{display:none}
+.stats{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.stat{padding:18px 22px;border-radius:18px;border:1px solid rgba(255,255,255,.14);min-width:150px}
+.stat b{display:block;font-family:var(--cond);font-size:46px;line-height:1;color:var(--lime-2)}
+.stat span{font-size:14px;color:#B9B9B8}
+.flow-dots{grid-column:8/span 5;grid-row:3;display:flex;gap:8px}
+.flow-dots i{height:3px;flex:1;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden;position:relative}
+.flow-dots i::after{content:"";position:absolute;inset:0;background:var(--lime);transform:scaleX(var(--p,0));transform-origin:0 50%}
 
-/* Social */
-.social-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
-.sc{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:3/4;isolation:isolate;color:#fff}
-.sc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .9s var(--ease)}
-.sc::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 40%,rgba(39,39,41,.85));transition:background .4s}
-.sc:hover img{transform:scale(1.08)}
-.sc:hover::after{background:linear-gradient(180deg,rgba(177,193,39,.25),rgba(39,39,41,.85))}
-.sc .t{position:absolute;left:18px;right:18px;bottom:16px;font-family:var(--cond);font-weight:700;font-size:20px;display:flex;justify-content:space-between;align-items:center}
+/* ---------- education ---------- */
+.edu{padding:clamp(100px,11vw,160px) 0}
+.sec-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end;margin-bottom:56px}
+.sec-head>div{grid-column:1/span 7}
+.sec-head>.lead,.sec-head>.btn{grid-column:9/span 4;justify-self:start}
+.edu-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px}
+.ec{position:relative;min-height:560px;border-radius:32px;overflow:hidden;color:#fff;display:flex;align-items:flex-end;isolation:isolate}
+.ec:first-child{grid-column:1/span 7}.ec:last-child{grid-column:8/span 5}
+.ec img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;z-index:-2}
+.ec::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(24,24,26,.05) 20%,rgba(24,24,26,.92) 100%)}
+.ec .in{padding:clamp(26px,3vw,44px)}
+.ec .big{font-family:var(--cond);font-weight:800;font-size:clamp(70px,8vw,130px);line-height:.85;color:var(--lime-2)}
+.ec h3{font-family:var(--cond);font-weight:700;font-size:34px;margin:12px 0 0}
+.ec p{font-size:16.5px;line-height:1.6;color:#E1E1E0;max-width:460px;margin:10px 0 22px}
 
-/* Downloads */
-.dl{background:var(--bg)}
-.dl-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.cat-card{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:center;padding:24px;border-radius:var(--r-md);background:#fff;transition:transform .45s var(--ease),box-shadow .45s}
-.cat-card:hover{transform:translateY(-6px);box-shadow:0 30px 50px -36px rgba(39,39,41,.5)}
-.cat-card img{border-radius:12px;box-shadow:0 18px 30px -18px rgba(0,0,0,.45);transition:transform .6s var(--ease)}
-.cat-card:hover img{transform:rotate(-3deg) scale(1.04)}
-.doc-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
-.doc{display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:150px;padding:22px;border-radius:var(--r-md);background:#fff;border:1px solid transparent;transition:border-color .3s,transform .4s var(--ease)}
-.doc:hover{border-color:var(--lime);transform:translateY(-4px)}
-.doc b{font-family:var(--cond);font-size:21px;color:var(--gray-dark);line-height:1.15}
-.doc span{font-family:var(--cond);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;color:var(--lime-ink)}
+/* ---------- social ---------- */
+.soc{padding:0 0 clamp(100px,11vw,160px)}
+.soc-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.so{position:relative;aspect-ratio:3/4;border-radius:22px;overflow:hidden;isolation:isolate;color:#fff}
+.so img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s var(--ease)}
+.so::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 35%,rgba(24,24,26,.88));transition:opacity .4s}
+.so:hover img{transform:scale(1.08)}
+.so .t{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;align-items:center;font-family:var(--cond);font-weight:700;font-size:20px}
+.so .t i{width:34px;height:34px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-style:normal;transform:scale(.6);opacity:0;transition:transform .4s var(--ease),opacity .3s}
+.so:hover .t i{transform:none;opacity:1}
 
-/* Newsletter */
-.nl{position:relative;border-radius:var(--r-lg);background:var(--lime);color:var(--gray-dark);padding:64px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center;overflow:hidden}
-.nl::before{content:"";position:absolute;right:-120px;bottom:-260px;width:560px;height:560px;border-radius:50%;background:var(--lime-2);opacity:.7}
-.nl::after{content:"";position:absolute;right:160px;bottom:-330px;width:440px;height:440px;border-radius:50%;background:#fff;opacity:.25}
-.nl>*{position:relative;z-index:1}
-.nl h2{font-family:var(--cond);font-weight:700;font-size:clamp(34px,4vw,58px);line-height:1;margin:0}
-.nl p{font-size:17px;line-height:1.6;margin:14px 0 0}
-.nl img{justify-self:end;max-width:300px;filter:drop-shadow(0 30px 30px rgba(39,39,41,.25))}
-.btn-dark{background:var(--gray-dark);color:#fff}
-.btn-dark:hover{background:#000}
+/* ---------- downloads ---------- */
+.dl{background:var(--bg);padding:clamp(100px,11vw,150px) 0}
+.dl-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px}
+.catc{grid-column:span 6;display:grid;grid-template-columns:170px minmax(0,1fr);gap:28px;align-items:center;padding:26px;border-radius:26px;background:#fff;transition:transform .5s var(--ease),box-shadow .5s}
+.catc:hover{transform:translateY(-6px);box-shadow:0 40px 60px -44px rgba(0,0,0,.5)}
+.catc img{border-radius:12px;box-shadow:0 20px 30px -18px rgba(0,0,0,.45);transition:transform .7s var(--ease)}
+.catc:hover img{transform:rotate(-4deg) scale(1.05)}
+.catc .nm{font-family:var(--cond);font-weight:700;font-size:30px;line-height:1.05;color:var(--ink);margin:8px 0 18px}
+.doc{grid-column:span 3;display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:160px;padding:24px;border-radius:22px;background:#fff;box-shadow:inset 0 0 0 1px transparent;transition:box-shadow .3s,transform .45s var(--ease)}
+.doc:hover{box-shadow:inset 0 0 0 2px var(--lime);transform:translateY(-4px)}
+.doc b{font-family:var(--cond);font-size:23px;line-height:1.12;color:var(--ink)}
 
-/* Footer */
-.foot{position:relative;background:var(--gray-2);color:#D6D6D5;padding:110px 0 36px;margin-top:130px;overflow:hidden}
-.foot .gl{position:absolute;top:0;width:280px;opacity:.9}
+/* ---------- newsletter ---------- */
+.nl-sec{padding:clamp(100px,11vw,150px) 0 0}
+.nl{position:relative;overflow:hidden;border-radius:36px;background:var(--lime);color:var(--ink);padding:clamp(36px,5vw,72px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:center}
+.nl .tx{grid-column:1/span 7;position:relative;z-index:1}
+.nl h2{font-family:var(--cond);font-weight:700;font-size:clamp(36px,4.4vw,64px);line-height:1;margin:0}
+.nl p{font-size:17px;line-height:1.6;margin:16px 0 28px;max-width:520px}
+.nl .im{grid-column:9/span 4;position:relative;z-index:1}
+.nl .im img{filter:drop-shadow(0 30px 30px rgba(0,0,0,.22))}
+.orb{position:absolute;border-radius:50%;pointer-events:none}
+.orb.a{width:620px;height:620px;right:-160px;bottom:-330px;background:var(--lime-2);opacity:.75}
+.orb.b{width:420px;height:420px;right:260px;bottom:-300px;background:#fff;opacity:.22}
+
+/* ---------- footer ---------- */
+.foot{position:relative;margin-top:clamp(100px,11vw,150px);background:var(--night);color:#C9C9C8;padding:110px 0 34px;overflow:hidden}
+.foot .gl{position:absolute;top:0;width:clamp(150px,20vw,280px)}
 .foot .gl.l{left:0}.foot .gl.r{right:0;transform:scaleX(-1)}
-.fcols{display:grid;grid-template-columns:1.3fr repeat(4,minmax(0,1fr));gap:36px;position:relative}
-.fcols h5{margin:0 0 14px;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--lime-2)}
-.fcols a{display:block;font-size:14.5px;line-height:2.05;color:#D6D6D5}
+.fcols{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:28px}
+.fcols>div:first-child{grid-column:span 4}
+.fcols>div{grid-column:span 2}
+.fcols h5{margin:0 0 14px;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime-2)}
+.fcols a{display:block;font-size:14.5px;line-height:2.05;color:#C9C9C8}
 .fcols a:hover{color:#fff}
-.socials{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.socials a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);font-family:var(--cond);font-weight:700;font-size:13px;transition:background .25s,color .25s}
-.socials a:hover{background:var(--lime);color:var(--gray-dark)}
-.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:70px;padding-top:26px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#B5B5B4}
-.legal nav{display:flex;flex-wrap:wrap;gap:20px}
+.flogo{display:inline-block;background:#fff;border-radius:999px;padding:12px 20px}
+.flogo img{height:32px;width:auto}
+.socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.socials a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);font-family:var(--cond);font-weight:700;font-size:13px;color:#fff;transition:background .25s,color .25s}
+.socials a:hover{background:var(--lime);color:var(--ink)}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:70px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#9B9B9A}
+.legal nav{display:flex;flex-wrap:wrap;gap:22px}
 .legal a:hover{color:#fff}
 
-/* Floating WhatsApp */
-.wa{position:fixed;right:22px;bottom:22px;z-index:70;width:60px;height:60px;border-radius:50%;background:var(--lime);color:var(--gray-dark);display:grid;place-items:center;box-shadow:0 16px 30px -12px rgba(39,39,41,.5);transition:transform .35s var(--ease)}
+.wa{position:fixed;right:22px;bottom:22px;z-index:80;width:62px;height:62px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;box-shadow:0 18px 34px -12px rgba(0,0,0,.5);transition:transform .4s var(--ease)}
 .wa:hover{transform:scale(1.08)}
-.wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--lime);animation:ping 2.4s ease-out infinite}
+.wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--lime);animation:ping 2.6s ease-out infinite}
 @keyframes ping{to{transform:scale(1.6);opacity:0}}
 
-/* Progress */
-.progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--lime);transform-origin:0 50%;transform:scaleX(0);z-index:100}
-
-/* Reveal */
-.rv{opacity:0;transform:translateY(60px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-.rv.in{opacity:1;transform:none}
-.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
-.clip{clip-path:inset(8% 4% 0 4% round 48px);transition:clip-path 1.4s var(--ease)}
-.clip.in{clip-path:inset(0 0 0 0 round 0)}
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}.clip{clip-path:none}
+/* ---------- responsive ---------- */
+@media (max-width:1499px){.logo .claim{display:none}}
+@media (max-width:1240px){.tools .opt{display:none}.nav .lk{padding:11px 10px;font-size:13px}}
+@media (max-width:1060px){
+  .nav{display:none}.burger{display:grid}
+  .aud-grid{grid-template-columns:minmax(0,1fr)}
+  .ac{min-height:auto}
+  .soc-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .doc{grid-column:span 6}
+  .fcols>div:first-child{grid-column:1/-1}.fcols>div{grid-column:span 6}
 }
-@media (max-width:1180px){
-  .brand .claim{display:none}
-  .pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .social-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .doc-list{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fcols{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:1024px){
-  .mainnav,.tools .hide-s{display:none}
-  .burger{display:grid}
-}
-@media (max-width:860px){
-  .wrap{padding:0 16px}
-  .sec{padding:90px 0}
-  .topbar-in{height:70px}.brand img{height:34px}
-  .panels{flex-direction:column;height:auto}
-  .panel,.panel:hover,.panel.is-open{flex:none;height:440px}
-  .panel .more{max-height:none;opacity:1}
-  .story{grid-template-columns:minmax(0,1fr);gap:20px}
-  .story .stick{position:relative;top:0;height:auto}
-  .step{min-height:auto;padding:30px 0;opacity:1}
-  .learn-grid,.dl-grid,.nl{grid-template-columns:minmax(0,1fr)}
-  .nl{padding:40px 24px}.nl img{justify-self:start;max-width:200px}
-  .cat-card{grid-template-columns:100px minmax(0,1fr)}
+@media (max-width:900px){
+  .hdr-in{height:64px;padding-left:20px}.logo img{height:30px}
+  .hero{min-height:720px}
+  .hero-copy{justify-content:flex-end;padding-bottom:190px}
+  .hero-copy::before{content:"";position:absolute;left:0;right:0;bottom:0;height:72%;z-index:-1;background:linear-gradient(180deg,rgba(24,24,26,0) 0%,rgba(24,24,26,.88) 30%,rgba(24,24,26,.96) 100%)}
+  .hero .ctas .btn-ghost{display:none}
+  .ht{font-size:clamp(40px,11vw,56px)}
+  .hsub{font-size:24px}
+  .hero::before{background:radial-gradient(70% 45% at 50% 28%,rgba(177,193,39,.22),rgba(177,193,39,0) 70%)}
+  .hp{font-size:16px}
+  .hint{display:none}
   .hero-ui{bottom:70px}
-  .dot{font-size:0}
-  .foot .gl{width:160px}
+  .sb span{display:none}
+  .stmt-foot .lead{grid-column:1/-1}
+  .sec-head>div,.sec-head>.lead,.sec-head>.btn{grid-column:1/-1}
+  .flow-in{grid-template-columns:minmax(0,1fr)}
+  .stage{display:none}
+  .steps,.flow-dots,.flow-head{grid-column:1/-1}
+  .steps{min-height:auto;display:flex;flex-direction:column;gap:60px}
+  .step{position:relative;inset:auto;opacity:1!important;visibility:visible!important}
+  .step .mimg{display:block;border-radius:24px;background:#fff;padding:24px;margin-bottom:24px;aspect-ratio:4/3;object-fit:contain;width:100%}
+  .flow-dots{display:none}
+  .ec:first-child,.ec:last-child{grid-column:1/-1;min-height:460px}
+  .catc{grid-column:1/-1;grid-template-columns:110px minmax(0,1fr)}
+  .nl .tx,.nl .im{grid-column:1/-1}.nl .im{max-width:220px}
+  .prod-in{min-height:auto}
+  .track-wrap{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:10px}
+  .card{scroll-snap-align:start;width:80vw}
+  .prod-foot{display:none}
 }
 @media (max-width:560px){
-  .pgrid,.doc-list{grid-template-columns:minmax(0,1fr)}
-  .social-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fcols{grid-template-columns:minmax(0,1fr)}
+  .soc-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .doc{grid-column:1/-1}
+  .fcols>div{grid-column:1/-1}
+  .btn{padding:0 20px}
 }
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<!-- ============ HEADER ============ -->
-<header class="topbar" id="topbar">
-  <div class="wrap topbar-in">
-    <a class="brand" href="https://kulzer.com.br/pt/pt/inicio/inicio.html" aria-label="Kulzer — página inicial">
+<!-- ================= HEADER ================= -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a class="logo" href="https://kulzer.com.br/pt/pt/inicio/inicio.html" aria-label="Kulzer — página inicial">
       <img src="https://kulzer.com.br/media/system-files/img/header/logo.svg" alt="Kulzer" width="211" height="53">
       <span class="claim">Saúde bucal nas melhores mãos</span>
     </a>
-    <nav class="mainnav" aria-label="Principal">
-      <div class="item">
-        <a class="lnk" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Cirurgião-Dentista</a>
+    <nav class="nav" aria-label="Principal">
+      <div class="it"><a class="lk" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Cirurgião-Dentista</a>
         <div class="mega">
           <div><h4>Por indicação</h4>
             <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/prevencao/prevencao.html">Prevenção</a>
             <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/materiais-de-moldagem/materiais-de-moldagem.html">Materiais de Moldagem</a>
             <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/materiais-restauradores/materiais-restauradores.html">Materiais Restauradores</a>
-            <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/filmes-radiograficos/filmes-radiograficos.html">Filmes radiográficos</a>
-          </div>
+            <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/filmes-radiograficos/filmes-radiograficos.html">Filmes radiográficos</a></div>
           <div><h4>Por marca</h4>
             <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/charisma/charisma.html">Charisma®</a>
             <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/gluma/gluma.html">GLUMA®</a>
             <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/variotime/variotime.html">Variotime®</a>
-            <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/produtos-adicionais/produtos-adicionais.html">Produtos adicionais</a>
-          </div>
-          <a class="feat" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Tudo para o seu consultório <span>→</span></a>
-        </div>
-      </div>
-      <div class="item">
-        <a class="lnk" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Técnico de Prótese</a>
+            <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/produtos-adicionais/produtos-adicionais.html">Produtos adicionais</a></div>
+          <a class="ft" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Tudo para o seu consultório <span>→</span></a>
+        </div></div>
+      <div class="it"><a class="lk" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Técnico de Prótese</a>
         <div class="mega">
           <div><h4>Por indicação</h4>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/cad-cam/impressao-3d.html">CAD/CAM</a>
@@ -347,67 +370,54 @@ button{font:inherit}
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/dentes-artificiais/dentes-artificiais.html">Dentes Artificiais</a>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/protese-total-parcial-e-removivel/protese-total-parcial-e-removivel.html">Prótese total, parcial e removível</a>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/ceramica/ceramica.html">Cerâmica</a>
-            <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/revestimento/revestimento.html">Revestimento</a>
-          </div>
+            <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/revestimento/revestimento.html">Revestimento</a></div>
           <div><h4>Por marca</h4>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/cara-print/cara-print.html">cara® Print</a>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/dima-print/dima-print.html">dima® Print</a>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/hera/hera.html">Hera</a>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/heraceram/heraceram.html">HeraCeram®</a>
             <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/pala/pala.html">Pala®</a>
-            <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/signum/signum.html">Signum®</a>
-          </div>
-          <a class="feat" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Tudo para o seu laboratório <span>→</span></a>
-        </div>
-      </div>
-      <div class="item">
-        <a class="lnk" href="https://kulzer.com.br/pt/pt/cad-cam/linha-digital.html">CAD/CAM</a>
+            <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/signum/signum.html">Signum®</a></div>
+          <a class="ft" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Tudo para o seu laboratório <span>→</span></a>
+        </div></div>
+      <div class="it"><a class="lk" href="https://kulzer.com.br/pt/pt/cad-cam/linha-digital.html">CAD/CAM</a>
         <div class="mega">
           <div><h4>Impressão 3D</h4>
             <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/equipamentos-para-impressao-3d/sistema-3d.html">Equipamentos para impressão 3D</a>
             <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/resinas-para-impressao-3d/dima-print.html">Resinas para impressão 3D</a>
-            <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/software-para-impressao-3d/software-para-impressao-3d.html">Software para impressão 3D</a>
-          </div>
+            <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/software-para-impressao-3d/software-para-impressao-3d.html">Software para impressão 3D</a></div>
           <div><h4>Suporte</h4>
             <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/%C3%A0rea-de-suporte-cara-print/cara-print-cube-support-hub.html">Área de suporte cara® Print</a>
-            <a href="https://kulzer.com.br/pt/pt/cad-cam/linha-digital.html">Linha Digital</a>
-          </div>
-          <a class="feat" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Conheça o fluxo digital Kulzer <span>→</span></a>
-        </div>
-      </div>
-      <div class="item"><a class="lnk" href="https://kulzer.com.br/pt/pt/produtos/produtos.html">Produtos</a></div>
-      <div class="item"><a class="lnk" href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Downloads</a></div>
-      <div class="item">
-        <a class="lnk" href="https://kulzer.com.br/pt/pt/empresa/nossa-empresa.html">Empresa</a>
-        <div class="mega" style="width:min(420px,90vw)">
+            <a href="https://kulzer.com.br/pt/pt/cad-cam/linha-digital.html">Linha Digital</a></div>
+          <a class="ft" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Conheça o fluxo digital <span>→</span></a>
+        </div></div>
+      <div class="it"><a class="lk" href="https://kulzer.com.br/pt/pt/produtos/produtos.html">Produtos</a></div>
+      <div class="it"><a class="lk" href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Downloads</a></div>
+      <div class="it"><a class="lk" href="https://kulzer.com.br/pt/pt/empresa/nossa-empresa.html">Empresa</a>
+        <div class="mega" style="width:min(440px,92vw)">
           <div><h4>Nossa empresa</h4>
             <a href="https://kulzer.com.br/pt/pt/empresa/nos-somos-a-kulzer/overview-company.html">Nós somos a Kulzer</a>
             <a href="https://kulzer.com.br/pt/pt/empresa/localizacoes/overview-countries.html">Localizações</a>
-            <a href="https://kulzer.com.br/pt/pt/empresa/carreira/carreira-na-kulzer.html">Carreira</a>
-            <a href="https://www.kulzerblog.com.br/">Blog</a>
-          </div>
+            <a href="https://www.kulzerblog.com.br/">Blog</a></div>
           <div><h4>Carreira</h4>
-            <a href="https://kulzer.com.br/pt/pt/empresa/carreira/career-kulzer/carreira-na-kulzer.html">Career@Kulzer</a>
-            <a href="https://kulzer.com.br/pt/pt/empresa/carreira/carreira-na-kulzer.html#berufseinsteigende_berufserfahrene">Iniciantes e experientes</a>
-          </div>
-        </div>
-      </div>
+            <a href="https://kulzer.com.br/pt/pt/empresa/carreira/carreira-na-kulzer.html">Carreira na Kulzer</a>
+            <a href="https://kulzer.com.br/pt/pt/empresa/carreira/career-kulzer/carreira-na-kulzer.html">Career@Kulzer</a></div>
+        </div></div>
     </nav>
     <div class="tools">
-      <a class="ico hide-s" href="https://www.kulzerblog.com.br/" aria-label="Blog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 4h10l4 4v12H5z"/><path d="M8 11h8M8 15h6"/></svg></a>
-      <a class="ico hide-s" href="https://kulzer.com/worldwide" aria-label="Países"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></a>
-      <a class="ico hide-s" href="https://kulzer.com.br/pt/pt/newsletter-br/registration-nl.html" aria-label="Newsletter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
-      <a class="ico lime hide-s" href="https://kulzer.com.br/pt/pt/contato.html" aria-label="Contato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 5h16v11H8l-4 4z"/></svg></a>
-      <button class="ico burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a class="ic opt" href="https://www.kulzerblog.com.br/" aria-label="Blog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg></a>
+      <a class="ic opt" href="https://kulzer.com/worldwide" aria-label="Países"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></a>
+      <a class="ic opt" href="https://kulzer.com.br/pt/pt/newsletter-br/registration-nl.html" aria-label="Newsletter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+      <a class="ic lime" href="https://kulzer.com.br/pt/pt/contato.html" aria-label="Contato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
+      <button class="ic burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
 </header>
 
-<!-- Mobile drawer -->
-<div class="drawer" id="drawer" aria-label="Menu" hidden>
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-    <img src="https://kulzer.com.br/media/system-files/img/header/logo.svg" alt="Kulzer" style="height:34px;width:auto">
-    <button class="ico" id="closeDrawer" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+<div class="drawer" id="drawer" hidden>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+    <img src="https://kulzer.com.br/media/system-files/img/header/logo.svg" alt="Kulzer" style="height:32px;width:auto">
+    <button class="ic" id="closeDrawer" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <details><summary>Cirurgião-Dentista <span>+</span></summary><div>
     <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Tudo para o seu consultório</a>
@@ -423,454 +433,858 @@ button{font:inherit}
   <a class="d" href="https://kulzer.com.br/pt/pt/produtos/produtos.html">Produtos</a>
   <a class="d" href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Downloads</a>
   <a class="d" href="https://kulzer.com.br/pt/pt/empresa/nossa-empresa.html">Empresa</a>
-  <a class="btn btn-lime" style="margin-top:28px" href="https://api.whatsapp.com/send?phone=5511976449072">Fale pelo WhatsApp</a>
+  <a class="btn btn-lime" style="margin-top:28px;width:100%" href="https://api.whatsapp.com/send?phone=5511976449072">Fale pelo WhatsApp</a>
 </div>
 
 <main>
-<!-- ============ HERO SLIDER ============ -->
+<!-- ================= HERO 3D ================= -->
 <section class="hero" id="hero" aria-roledescription="carrossel" aria-label="Destaques Kulzer">
-  <article class="slide active" aria-label="1 de 4">
-    <div class="bg" style="background-image:url('https://kulzer.com.br/media/global-images/products/heraceram/heraceram-cre-active/heraceram-cre-active-kulzer-image-1600w-800h.webp')"></div>
-    <div class="shade"></div>
-    <div class="copy"><div class="wrap">
-      <span class="tag">Lançamento · Pigmento cerâmico</span>
-      <h1>HeraCeram® cre-active. <em>Criatividade com eficiência.</em></h1>
-      <p>Individualização estética em cerâmica simplificada. Crie restaurações naturais e altamente estéticas com facilidade.</p>
-      <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/produtos/heraceram-cre-active.html">Saiba mais <span class="ar">→</span></a><a class="btn btn-white" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/heraceram/just-stain.html">Conceito Just stain</a></div>
-    </div></div>
-  </article>
-  <article class="slide" aria-label="2 de 4">
-    <div class="bg" style="background-image:url('https://kulzer.com.br/media/global-images/training-images/kulzer-dentist-image-1600w-800h.webp')"></div>
-    <div class="shade"></div>
-    <div class="copy"><div class="wrap">
-      <span class="tag">Cirurgião-Dentista</span>
-      <h2 class="ht">Para o <em>Cirurgião-Dentista</em></h2>
-      <p>Apoiamos seu sucesso com produtos, serviços e soluções de qualidade para sua rotina clínica.</p>
-      <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Saiba como podemos te ajudar <span class="ar">→</span></a></div>
-    </div></div>
-  </article>
-  <article class="slide" aria-label="3 de 4">
-    <div class="bg" style="background-image:url('https://kulzer.com.br/media/global-images/people/lab-image-1600w-800h.webp')"></div>
-    <div class="shade"></div>
-    <div class="copy"><div class="wrap">
-      <span class="tag">Kulzer para laboratório</span>
-      <h2 class="ht">Para o <em>Técnico de Prótese</em> Dentária</h2>
-      <p>Apoiamos seu sucesso com produtos, serviços e soluções de qualidade para a sua rotina laboratorial.</p>
-      <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Veja como podemos te ajudar <span class="ar">→</span></a></div>
-    </div></div>
-  </article>
-  <article class="slide" aria-label="4 de 4">
-    <div class="bg" style="background-image:url('https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/cara-print-cube-validated-workflow-image-1600w-800h.webp')"></div>
-    <div class="shade"></div>
-    <div class="copy"><div class="wrap">
-      <span class="tag">CAD/CAM</span>
-      <h2 class="ht">Um vasto sistema <em>digital</em></h2>
-      <p>Que facilita o dia a dia do profissional — do software à resina, em um fluxo validado.</p>
-      <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Quero fazer parte <span class="ar">→</span></a></div>
-    </div></div>
-  </article>
-
-  <div class="hero-ui">
-    <div class="wrap">
-      <div class="dots" role="tablist" aria-label="Escolher destaque">
-        <button class="dot active" role="tab" aria-selected="true"><span class="trk"><i></i></span>HeraCeram® cre-active</button>
-        <button class="dot" role="tab" aria-selected="false"><span class="trk"><i></i></span>Consultório</button>
-        <button class="dot" role="tab" aria-selected="false"><span class="trk"><i></i></span>Laboratório</button>
-        <button class="dot" role="tab" aria-selected="false"><span class="trk"><i></i></span>CAD/CAM</button>
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="wrap hero-copy">
+    <h1 class="sr">Kulzer Brasil — Saúde bucal nas melhores mãos</h1>
+    <div class="hstack" aria-live="polite">
+      <div class="hs active" data-i="0">
+        <span class="tag"><i></i>Lançamento · Pigmento cerâmico</span>
+        <h2 class="ht split">HeraCeram® cre&#8209;active</h2>
+        <p class="hsub split">Criatividade com eficiência.</p>
+        <p class="hp">Individualização estética em cerâmica simplificada. Crie restaurações naturais e altamente estéticas com facilidade.</p>
+        <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/produtos/heraceram-cre-active.html">Saiba mais <span class="ar">→</span></a><a class="btn btn-ghost" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/heraceram/just-stain.html">Conceito Just stain</a></div>
       </div>
-      <button class="pp" id="pp" aria-label="Pausar destaques"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg></button>
+      <div class="hs" data-i="1">
+        <span class="tag"><i></i>Para o Cirurgião-Dentista</span>
+        <h2 class="ht split">Tudo para o seu consultório</h2>
+        <p class="hsub split">Qualidade na rotina clínica.</p>
+        <p class="hp">Apoiamos seu sucesso com produtos, serviços e soluções de qualidade para sua rotina clínica.</p>
+        <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Saiba como podemos te ajudar <span class="ar">→</span></a></div>
+      </div>
+      <div class="hs" data-i="2">
+        <span class="tag"><i></i>Para o Técnico de Prótese</span>
+        <h2 class="ht split">Tudo para o seu laboratório</h2>
+        <p class="hsub split">Estética, forma e função.</p>
+        <p class="hp">Apoiamos seu sucesso com produtos, serviços e soluções de qualidade para a sua rotina laboratorial.</p>
+        <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Veja como podemos te ajudar <span class="ar">→</span></a></div>
+      </div>
+      <div class="hs" data-i="3">
+        <span class="tag"><i></i>CAD/CAM · Impressão 3D</span>
+        <h2 class="ht split">Muito mais que impressão 3D</h2>
+        <p class="hsub split">Um vasto sistema digital.</p>
+        <p class="hp">Equipamentos, resinas e software que facilitam o dia a dia do profissional — com a nova cara® Print Cube.</p>
+        <div class="ctas"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Quero fazer parte <span class="ar">→</span></a><a class="btn btn-ghost" href="https://kulzer.com.br/pt/pt/produtos/cara-print-cube.html">cara® Print Cube</a></div>
+      </div>
     </div>
   </div>
 
-  <!-- Kulzer globes (KV) -->
+  <div class="hero-ui">
+    <div class="wrap">
+      <div class="snav" role="tablist" aria-label="Escolher destaque">
+        <button class="sb on" role="tab" aria-selected="true"><b>01</b><span class="tr"><i></i></span><span>HeraCeram® cre-active</span></button>
+        <button class="sb" role="tab" aria-selected="false"><b>02</b><span class="tr"><i></i></span><span>Consultório</span></button>
+        <button class="sb" role="tab" aria-selected="false"><b>03</b><span class="tr"><i></i></span><span>Laboratório</span></button>
+        <button class="sb" role="tab" aria-selected="false"><b>04</b><span class="tr"><i></i></span><span>CAD/CAM</span></button>
+      </div>
+      <div class="hctl">
+        <span class="hint" id="hint"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a2 2 0 1 1 4 0v5"/><path d="M13 10a2 2 0 1 1 4 0v1a2 2 0 1 1 4 0v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L6 15a2 2 0 0 1 3-2.6l0 0V11"/></svg>Arraste para girar</span>
+        <button class="round" id="prev" aria-label="Destaque anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="round" id="pp" aria-label="Pausar destaques"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg></button>
+        <button class="round" id="next" aria-label="Próximo destaque"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+
   <div class="globes" aria-hidden="true">
-    <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
-      <path class="g1" d="M0 140 C 260 20, 620 20, 880 140 Z" fill="#C9D933" opacity=".45"/>
-      <path class="g2" d="M560 140 C 700 40, 1000 40, 1140 140 Z" fill="#B1C127" opacity=".62"/>
-      <path class="g3" d="M1060 140 C 1160 60, 1340 60, 1440 120 L1440 140 Z" fill="#C9D933" opacity=".7"/>
-      <rect x="0" y="136" width="1440" height="4" fill="#fff"/>
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+      <path id="ga" d="M0 150 C 240 10, 620 10, 860 150 Z" fill="#C9D933" opacity=".22"/>
+      <path id="gb" d="M600 150 C 740 30, 1020 30, 1160 150 Z" fill="#B1C127" opacity=".38"/>
+      <path id="gc" d="M1080 150 C 1180 50, 1360 50, 1440 110 L1440 150 Z" fill="#C9D933" opacity=".5"/>
+      <rect x="0" y="146" width="1440" height="4" fill="#fff"/>
     </svg>
   </div>
 </section>
 
-<!-- ============ BRANDS ============ -->
-<div class="marquee" aria-label="Marcas Kulzer">
-  <div class="mq">
-    <span>Charisma®</span><span>•</span><span>GLUMA®</span><span>•</span><span>Variotime®</span><span>•</span><span>Pala®</span><span>•</span><span>Signum®</span><span>•</span><span>HeraCeram®</span><span>•</span><span>dima® Print</span><span>•</span><span>cara® Print</span><span>•</span><span>Delara®</span><span>•</span>
-    <span aria-hidden="true">Charisma®</span><span aria-hidden="true">•</span><span aria-hidden="true">GLUMA®</span><span aria-hidden="true">•</span><span aria-hidden="true">Variotime®</span><span aria-hidden="true">•</span><span aria-hidden="true">Pala®</span><span aria-hidden="true">•</span><span aria-hidden="true">Signum®</span><span aria-hidden="true">•</span><span aria-hidden="true">HeraCeram®</span><span aria-hidden="true">•</span><span aria-hidden="true">dima® Print</span><span aria-hidden="true">•</span><span aria-hidden="true">cara® Print</span><span aria-hidden="true">•</span><span aria-hidden="true">Delara®</span><span aria-hidden="true">•</span>
-  </div>
+<!-- ================= BRANDS ================= -->
+<div class="mq-wrap" aria-label="Marcas Kulzer">
+  <div class="mq" id="mq"><span>Charisma®</span><span>GLUMA®</span><span>Variotime®</span><span>Pala®</span><span>Signum®</span><span>HeraCeram®</span><span>dima® Print</span><span>cara® Print</span><span>Delara®</span></div>
 </div>
 
-<!-- ============ AUDIENCES ============ -->
-<section class="sec" aria-labelledby="aud-t">
+<!-- ================= STATEMENT ================= -->
+<section class="statement" aria-labelledby="st-t">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="rv"><span class="kicker">Kulzer Brasil</span><h2 class="h-lg" id="aud-t" style="margin-top:18px">Soluções para cada<br>etapa da odontologia</h2></div>
-      <p class="lead rv d1">Do consultório ao laboratório e ao fluxo digital: produtos, serviços e soluções de qualidade para a sua rotina.</p>
-    </div>
-    <div class="panels rv d2">
-      <article class="panel is-open" tabindex="0">
-        <img src="https://kulzer.com.br/media/global-images/training-images/kulzer-dentist-image-1600w-800h.webp" alt="Cirurgião-dentista em atendimento" loading="lazy">
-        <div class="in">
-          <span class="num">01 · CONSULTÓRIO</span>
-          <h3>Cirurgião-Dentista</h3>
-          <div class="more">
-            <p>Restauradores, adesivos, materiais de moldagem e prevenção para a sua rotina clínica.</p>
-            <div class="chips">
-              <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/charisma/charisma.html">Charisma®</a>
-              <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/gluma/gluma.html">GLUMA®</a>
-              <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/variotime/variotime.html">Variotime®</a>
-              <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/materiais-restauradores/materiais-restauradores.html">Restauradores</a>
-              <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/materiais-de-moldagem/materiais-de-moldagem.html">Moldagem</a>
-            </div>
-            <a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Tudo para o seu consultório <span class="ar">→</span></a>
-          </div>
+    <span class="kicker">Kulzer Brasil</span>
+    <p class="stmt" id="st-t">Saúde bucal nas <span class="hl">melhores mãos</span> — uma das maiores empresas odontológicas do mundo, ao lado de quem cuida de sorrisos todos os dias.</p>
+    <div class="stmt-foot"><p class="lead">Do consultório ao laboratório e ao fluxo digital, a Kulzer oferece uma extensa gama de produtos, serviços e educação para profissionais da odontologia.</p></div>
+  </div>
+</section>
+
+<!-- ================= AUDIENCES ================= -->
+<section class="aud" aria-label="Soluções por perfil">
+  <div class="wrap">
+    <div class="aud-grid">
+      <article class="ac">
+        <span class="num">01 · CONSULTÓRIO</span>
+        <h3>Cirurgião-Dentista</h3>
+        <p>Restauradores, adesivos, materiais de moldagem e prevenção para a rotina clínica.</p>
+        <div class="pic"><img data-par src="https://kulzer.com.br/media/global-images/products/charisma/charisma-e4sy/charisma-e4sy-syringe-assortment-image-1280w-720h.webp" alt="Charisma E4SY" loading="lazy"></div>
+        <div class="chips">
+          <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/charisma/charisma.html">Charisma®</a>
+          <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/gluma/gluma.html">GLUMA®</a>
+          <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/variotime/variotime.html">Variotime®</a>
+          <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/prevencao/prevencao.html">Prevenção</a>
         </div>
+        <a class="btn btn-ink" href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Para o consultório <span class="ar">→</span></a>
       </article>
-      <article class="panel" tabindex="0">
-        <img src="https://kulzer.com.br/media/global-images/people/lab-image-1600w-800h.webp" alt="Técnico de prótese no laboratório" loading="lazy">
-        <div class="in">
-          <span class="num">02 · LABORATÓRIO</span>
-          <h3>Técnico de Prótese</h3>
-          <div class="more">
-            <p>Cerâmicas, dentes artificiais, resinas indiretas, próteses e revestimentos.</p>
-            <div class="chips">
-              <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/heraceram/heraceram.html">HeraCeram®</a>
-              <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/pala/pala.html">Pala®</a>
-              <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/signum/signum.html">Signum®</a>
-              <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/dentes-artificiais/dentes-artificiais.html">Dentes</a>
-              <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/ceramica/ceramica.html">Cerâmica</a>
-            </div>
-            <a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Tudo para o seu laboratório <span class="ar">→</span></a>
-          </div>
+      <article class="ac">
+        <span class="num">02 · LABORATÓRIO</span>
+        <h3>Técnico de Prótese</h3>
+        <p>Cerâmicas, dentes artificiais, resinas indiretas, próteses e revestimentos.</p>
+        <div class="pic"><img data-par src="https://kulzer.com.br/media/global-images/products/pala/delara/delara-image-1280w-720h.webp" alt="Dentes Delara" loading="lazy"></div>
+        <div class="chips">
+          <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/heraceram/heraceram.html">HeraCeram®</a>
+          <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/pala/pala.html">Pala®</a>
+          <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/signum/signum.html">Signum®</a>
+          <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/hera/hera.html">Hera</a>
         </div>
+        <a class="btn btn-ink" href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Para o laboratório <span class="ar">→</span></a>
       </article>
-      <article class="panel" tabindex="0">
-        <img src="https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/cara-print-cube-validated-workflow-image-1600w-800h.webp" alt="Fluxo de impressão 3D cara Print" loading="lazy">
-        <div class="in">
-          <span class="num">03 · DIGITAL</span>
-          <h3>CAD/CAM e Impressão 3D</h3>
-          <div class="more">
-            <p>Equipamentos, resinas e software integrados para um fluxo digital previsível.</p>
-            <div class="chips">
-              <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/cara-print/cara-print.html">cara® Print</a>
-              <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/dima-print/dima-print.html">dima® Print</a>
-              <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/%C3%A0rea-de-suporte-cara-print/cara-print-cube-support-hub.html">Suporte</a>
-            </div>
-            <a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Quero fazer parte <span class="ar">→</span></a>
-          </div>
+      <article class="ac">
+        <span class="num">03 · DIGITAL</span>
+        <h3>CAD/CAM e Impressão 3D</h3>
+        <p>Equipamentos, resinas e software integrados em um fluxo digital validado.</p>
+        <div class="pic"><img data-par src="https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/3d-printing-cara-print-cube-front-closed-1600x900-image-1280w-720h.webp" alt="cara Print Cube" loading="lazy"></div>
+        <div class="chips">
+          <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/cara-print/cara-print.html">cara® Print</a>
+          <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/dima-print/dima-print.html">dima® Print</a>
+          <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/%C3%A0rea-de-suporte-cara-print/cara-print-cube-support-hub.html">Suporte</a>
         </div>
+        <a class="btn btn-ink" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Para o fluxo digital <span class="ar">→</span></a>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ============ PRODUCTS ============ -->
-<section class="sec products" aria-labelledby="prod-t">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="rv"><span class="kicker">Seleção especial para você</span><h2 class="h-lg" id="prod-t" style="margin-top:18px">Destaques do portfólio</h2></div>
-      <div class="tabs rv d1" role="tablist" aria-label="Filtrar produtos">
-        <button class="tab" role="tab" aria-selected="true" data-f="all">Destaques</button>
-        <button class="tab" role="tab" aria-selected="false" data-f="clinica">Consultório</button>
-        <button class="tab" role="tab" aria-selected="false" data-f="lab">Laboratório</button>
-        <button class="tab" role="tab" aria-selected="false" data-f="digital">Digital</button>
+<!-- ================= PRODUCTS (pinned horizontal) ================= -->
+<section class="prod" id="prod" aria-labelledby="pr-t">
+  <div class="prod-in">
+    <div class="wrap">
+      <div class="prod-head">
+        <div><span class="kicker">Seleção especial para você</span><h2 class="h2 split" id="pr-t">Destaques do portfólio</h2></div>
+        <div class="tabs" role="tablist" aria-label="Filtrar produtos">
+          <button class="tab" role="tab" aria-selected="true" data-f="all">Destaques</button>
+          <button class="tab" role="tab" aria-selected="false" data-f="clinica">Consultório</button>
+          <button class="tab" role="tab" aria-selected="false" data-f="lab">Laboratório</button>
+          <button class="tab" role="tab" aria-selected="false" data-f="digital">Digital</button>
+        </div>
       </div>
     </div>
-    <div class="pgrid" id="pgrid" aria-live="polite"></div>
-    <div style="display:flex;justify-content:center;margin-top:48px" class="rv"><a class="btn btn-line" href="https://kulzer.com.br/pt/pt/produtos/produtos.html">Ver todos os produtos <span class="ar">→</span></a></div>
+    <div class="track-wrap"><div class="track" id="track" aria-live="polite"></div></div>
+    <div class="wrap"><div class="prod-foot"><span class="pcount" id="pcount"></span><span class="pbar"><i id="pbar"></i></span><a class="btn btn-line" href="https://kulzer.com.br/pt/pt/produtos/produtos.html">Todos os produtos <span class="ar">→</span></a></div></div>
   </div>
 </section>
 
-<!-- ============ CARA PRINT CUBE STORY ============ -->
-<section class="sec cube on-dark clip" aria-labelledby="cube-t">
-  <div class="arc" aria-hidden="true"></div>
+<!-- ================= DIGITAL FLOW (pinned) ================= -->
+<section class="flow dark" id="flow" aria-labelledby="fl-t">
   <div class="wrap">
-    <div class="story">
-      <div class="stick">
-        <div class="stage">
-          <img class="on" src="https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/3d-printing-cara-print-cube-front-closed-1600x900-image-1280w-720h.webp" alt="cara Print Cube" loading="lazy">
-          <img src="https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/cara-print-cube-validated-workflow-image-1600w-800h.webp" alt="Fluxo validado cara Print" loading="lazy">
-          <img src="https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/3d-printing-cara-print-cube-front-closed-1600x900-image-1280w-720h.webp" alt="cara Print Cube" loading="lazy" style="object-fit:contain;background:#fff;padding:8%">
-          <span class="badge" id="badge">Novo · Impressora 3D</span>
+    <div class="flow-in">
+      <div class="flow-head">
+        <div><span class="kicker">Novo · Fluxo digital Kulzer</span><h2 class="h2 split" id="fl-t">cara® Print Cube</h2></div>
+        <a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/produtos/cara-print-cube.html">Detalhes da Cube <span class="ar">→</span></a>
+      </div>
+      <div class="stage" id="stage">
+        <span class="ring"></span><span class="ring r2"></span>
+        <div class="card3d" id="card3d">
+          <img src="https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/3d-printing-cara-print-cube-front-closed-1600x900-image-1280w-720h.webp" alt="cara Print Cube">
+          <img src="https://kulzer.com.br/media/global-images/products/cara/cara-print-4-0-pro/cara-print-4-0pro-screenshot-image-1280w-720h.webp" alt="Software cara Print CAM" style="object-fit:cover;padding:0">
+          <img src="https://kulzer.com.br/media/global-images/products/cara/cara-print-cleanup/cara-print-cleanup-front-1600x900-image-1280w-720h.webp" alt="cara Print CleanUp">
+          <img src="https://kulzer.com.br/media/global-images/products/cara/cara-print-ledcure/cara-print-led-cure-with-long-life-leds-image-1280w-720h.webp" alt="cara Print LEDcure">
         </div>
       </div>
-      <div class="steps">
-        <div class="step on" data-i="0">
-          <span class="kicker">Novo · Impressora 3D</span>
-          <h2 class="h-xl" id="cube-t" style="margin-top:18px">cara® Print Cube</h2>
-          <p><strong style="color:#fff">Muito mais que impressão 3D.</strong> Uma solução compacta e confiável para uma impressão 3D perfeita.</p>
-        </div>
-        <div class="step" data-i="1">
-          <span class="n">PRECISÃO E CAPACIDADE</span>
-          <h3>Plataforma maior, cinco modelos por vez.</h3>
-          <p>Alta precisão com uma plataforma de impressão maior e capacidade de cinco modelos, garantindo resultados consistentes e excepcionais.</p>
-          <div class="stats"><div class="stat"><b>5</b><span>modelos por impressão</span></div><div class="stat"><b>10</b><span>resinas dima® Print</span></div></div>
-        </div>
-        <div class="step" data-i="2">
-          <span class="n">FLUXO VALIDADO</span>
-          <h3>Do software à pós-cura.</h3>
-          <p>cara® Print CAM 2.0, cara® Print CleanUp e cara® Print LEDcure completam o sistema, com resinas dima® Print para cada indicação.</p>
-          <div class="ctas" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><a class="btn btn-lime" href="https://kulzer.com.br/pt/pt/produtos/cara-print-cube.html">Detalhes <span class="ar">→</span></a><a class="btn btn-white" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/%C3%A0rea-de-suporte-cara-print/cara-print-cube-support-hub.html">Área de suporte</a></div>
-        </div>
+      <div class="steps" id="steps">
+        <div class="step"><img class="mimg" src="https://kulzer.com.br/media/global-images/products/cara/cara-cube/cara-print-cube-productpage/3d-printing-cara-print-cube-front-closed-1600x900-image-1280w-720h.webp" alt="" loading="lazy">
+          <span class="n">01 · IMPRIMIR</span><h3>Compacta, precisa, confiável.</h3>
+          <p>A cara® Print Cube oferece alta precisão com uma plataforma de impressão maior, com capacidade de cinco modelos, garantindo resultados consistentes e excepcionais.</p>
+          <div class="stats"><div class="stat"><b data-count="5">5</b><span>modelos por impressão</span></div><div class="stat"><b data-count="10">10</b><span>resinas dima® Print</span></div></div></div>
+        <div class="step"><img class="mimg" src="https://kulzer.com.br/media/global-images/products/cara/cara-print-4-0-pro/cara-print-4-0pro-screenshot-image-1280w-720h.webp" alt="" loading="lazy">
+          <span class="n">02 · PLANEJAR</span><h3>cara® Print CAM 2.0</h3>
+          <p>Software para impressão 3D que prepara e posiciona cada trabalho dentro do fluxo validado Kulzer.</p></div>
+        <div class="step"><img class="mimg" src="https://kulzer.com.br/media/global-images/products/cara/cara-print-cleanup/cara-print-cleanup-front-1600x900-image-1280w-720h.webp" alt="" loading="lazy">
+          <span class="n">03 · LIMPAR</span><h3>cara® Print CleanUp</h3>
+          <p>Limpeza padronizada das peças impressas para resultados reproduzíveis no laboratório.</p></div>
+        <div class="step"><img class="mimg" src="https://kulzer.com.br/media/global-images/products/cara/cara-print-ledcure/cara-print-led-cure-with-long-life-leds-image-1280w-720h.webp" alt="" loading="lazy">
+          <span class="n">04 · POLIMERIZAR</span><h3>cara® Print LEDcure</h3>
+          <p>Pós-polimerização com LEDs de longa duração, completando o fluxo com as resinas dima® Print.</p>
+          <div class="ctas"><a class="btn btn-ghost" href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/%C3%A0rea-de-suporte-cara-print/cara-print-cube-support-hub.html">Área de suporte cara® Print</a></div></div>
       </div>
+      <div class="flow-dots" id="fdots"><i></i><i></i><i></i><i></i></div>
     </div>
   </div>
 </section>
 
-<!-- ============ LEARN ============ -->
-<section class="sec" aria-labelledby="learn-t">
+<!-- ================= EDUCATION ================= -->
+<section class="edu" aria-labelledby="ed-t">
   <div class="wrap">
     <div class="sec-head">
-      <div class="rv"><span class="kicker">Aprenda com a Kulzer Brasil</span><h2 class="h-lg" id="learn-t" style="margin-top:18px">Training &amp; Education</h2></div>
-      <p class="lead rv d1">Conteúdo de qualidade com professores renomados para a sua atualização profissional.</p>
+      <div><span class="kicker">Aprenda com a Kulzer Brasil</span><h2 class="h2 split" id="ed-t">Training &amp; Education</h2></div>
+      <p class="lead">Conteúdo com professores renomados da odontologia para a sua atualização profissional.</p>
     </div>
-    <div class="learn-grid">
-      <a class="lcard rv" href="https://www.youtube.com/@KulzerBrasil/videos">
-        <img src="https://kulzer.com.br/media/brasil/imagens/webin%C3%A1rios-image-960w-540h.webp" alt="Webinários Kulzer" loading="lazy">
-        <div class="in">
-          <div class="big">100+</div>
-          <h3>Webinários</h3>
-          <p>Mais de 100 aulas gravadas dos mais variados temas com professores renomados da odontologia.</p>
-          <span class="btn btn-lime">Assistir <span class="ar">→</span></span>
-        </div>
+    <div class="edu-grid">
+      <a class="ec reveal-clip" href="https://www.youtube.com/@KulzerBrasil/videos">
+        <img data-par src="https://kulzer.com.br/media/brasil/imagens/webin%C3%A1rios-image-960w-540h.webp" alt="Webinários Kulzer Brasil" loading="lazy">
+        <div class="in"><div class="big"><span data-count="100">100</span>+</div><h3>Webinários</h3><p>Mais de 100 aulas gravadas dos mais variados temas com professores renomados da odontologia.</p><span class="btn btn-lime">Assistir <span class="ar">→</span></span></div>
       </a>
-      <a class="lcard rv d1" href="https://www.ident.com.br/autor/Kulzer">
-        <img src="https://kulzer.com.br/media/brasil/imagens/ident-image-960w-540h.webp" alt="Ident" loading="lazy">
-        <div class="in">
-          <div class="big" style="font-size:clamp(56px,6vw,90px)">Ident</div>
-          <h3>Cursos online</h3>
-          <p>A Kulzer possui diversos cursos disponíveis na maior plataforma de cursos online da odontologia.</p>
-          <span class="btn btn-lime">Acessar <span class="ar">→</span></span>
-        </div>
+      <a class="ec reveal-clip" href="https://www.ident.com.br/autor/Kulzer">
+        <img data-par src="https://kulzer.com.br/media/brasil/imagens/ident-image-960w-540h.webp" alt="Ident" loading="lazy">
+        <div class="in"><div class="big" style="font-size:clamp(60px,6vw,96px)">Ident</div><h3>Cursos online</h3><p>Diversos cursos Kulzer na maior plataforma de cursos online da odontologia.</p><span class="btn btn-lime">Acessar <span class="ar">→</span></span></div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ SOCIAL ============ -->
-<section class="sec" style="padding-top:0" aria-labelledby="soc-t">
+<!-- ================= SOCIAL ================= -->
+<section class="soc" aria-labelledby="so-t">
   <div class="wrap">
-    <div class="sec-head"><div class="rv"><span class="kicker">Redes sociais</span><h2 class="h-lg" id="soc-t" style="margin-top:18px">Siga a Kulzer Brasil</h2></div></div>
-    <div class="social-grid">
-      <a class="sc rv" href="https://www.instagram.com/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/instagram2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">Instagram <span>↗</span></span></a>
-      <a class="sc rv d1" href="https://youtube.com/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/youtube2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">YouTube <span>↗</span></span></a>
-      <a class="sc rv d2" href="https://br.linkedin.com/company/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/linkedin2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">LinkedIn <span>↗</span></span></a>
-      <a class="sc rv" href="https://www.facebook.com/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/facebook2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">Facebook <span>↗</span></span></a>
-      <a class="sc rv d1" href="https://www.tiktok.com/@kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/tiktok-image-960w-540h.webp" alt="" loading="lazy"><span class="t">TikTok <span>↗</span></span></a>
-      <a class="sc rv d2" href="https://www.kulzerblog.com.br/"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/blog2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">Blog <span>↗</span></span></a>
+    <div class="sec-head"><div><span class="kicker">Redes sociais</span><h2 class="h2 split" id="so-t">Siga a Kulzer Brasil</h2></div></div>
+    <div class="soc-row">
+      <a class="so" href="https://www.instagram.com/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/instagram2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">Instagram<i>↗</i></span></a>
+      <a class="so" href="https://youtube.com/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/youtube2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">YouTube<i>↗</i></span></a>
+      <a class="so" href="https://br.linkedin.com/company/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/linkedin2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">LinkedIn<i>↗</i></span></a>
+      <a class="so" href="https://www.facebook.com/kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/facebook2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">Facebook<i>↗</i></span></a>
+      <a class="so" href="https://www.tiktok.com/@kulzerbrasil"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/tiktok-image-960w-540h.webp" alt="" loading="lazy"><span class="t">TikTok<i>↗</i></span></a>
+      <a class="so" href="https://www.kulzerblog.com.br/"><img src="https://kulzer.com.br/media/brasil/imagens/social-media/blog2-image-960w-540h.webp" alt="" loading="lazy"><span class="t">Blog<i>↗</i></span></a>
     </div>
   </div>
 </section>
 
-<!-- ============ DOWNLOADS ============ -->
-<section class="sec dl" aria-labelledby="dl-t">
+<!-- ================= DOWNLOADS ================= -->
+<section class="dl" aria-labelledby="dl-t">
   <div class="wrap">
     <div class="sec-head">
-      <div class="rv"><span class="kicker">Downloads</span><h2 class="h-lg" id="dl-t" style="margin-top:18px">Catálogos e documentos</h2></div>
-      <a class="btn btn-line rv d1" href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Ir para a área de download <span class="ar">→</span></a>
+      <div><span class="kicker">Downloads</span><h2 class="h2 split" id="dl-t">Catálogos e documentos</h2></div>
+      <a class="btn btn-line" href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Área de download <span class="ar">→</span></a>
     </div>
     <div class="dl-grid">
-      <a class="cat-card rv" href="https://kulzer.com.br/media/brasil/documentos/catalogo-de-clinica-04-2025.pdf">
-        <img src="https://kulzer.com.br/media/global-images/downloads/dentist-catalogue.jpg" alt="Capa do catálogo de clínica" loading="lazy">
-        <div><span class="kicker" style="font-size:12px">PDF</span><p class="h-md" style="margin-top:10px">Catálogo de clínica</p><span class="btn btn-lime" style="margin-top:18px;min-height:44px">Baixar <span class="ar">↓</span></span></div>
-      </a>
-      <a class="cat-card rv d1" href="https://kulzer.com.br/media/brasil/catalogos/catalogo-de-laboratorio-09-2026.pdf">
-        <img src="https://kulzer.com.br/media/global-images/downloads/lab-catalogue.jpg" alt="Capa do catálogo de laboratório" loading="lazy">
-        <div><span class="kicker" style="font-size:12px">PDF</span><p class="h-md" style="margin-top:10px">Catálogo de laboratório</p><span class="btn btn-lime" style="margin-top:18px;min-height:44px">Baixar <span class="ar">↓</span></span></div>
-      </a>
-    </div>
-    <div class="doc-list">
-      <a class="doc rv" href="https://www.kulzer.qarad.eifu.online/Kulzer/BR/pt"><b>Instruções de uso</b><span>Portal e-IFU →</span></a>
-      <a class="doc rv d1" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=1265984"><b>Informação de produto</b><span>Acessar →</span></a>
-      <a class="doc rv d2" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=143552"><b>Ficha de dados de segurança</b><span>Acessar →</span></a>
-      <a class="doc rv d3" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=49728"><b>Informações científicas</b><span>Acessar →</span></a>
+      <a class="catc" href="https://kulzer.com.br/media/brasil/documentos/catalogo-de-clinica-04-2025.pdf"><img src="https://kulzer.com.br/media/global-images/downloads/dentist-catalogue.jpg" alt="Capa do catálogo de clínica" loading="lazy"><div><span class="kicker">PDF</span><p class="nm">Catálogo de clínica</p><span class="btn btn-lime">Baixar <span class="ar">↓</span></span></div></a>
+      <a class="catc" href="https://kulzer.com.br/media/brasil/catalogos/catalogo-de-laboratorio-09-2026.pdf"><img src="https://kulzer.com.br/media/global-images/downloads/lab-catalogue.jpg" alt="Capa do catálogo de laboratório" loading="lazy"><div><span class="kicker">PDF</span><p class="nm">Catálogo de laboratório</p><span class="btn btn-lime">Baixar <span class="ar">↓</span></span></div></a>
+      <a class="doc" href="https://www.kulzer.qarad.eifu.online/Kulzer/BR/pt"><b>Instruções de uso</b><span class="go">Portal e-IFU <span class="ar">→</span></span></a>
+      <a class="doc" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=1265984"><b>Informação de produto</b><span class="go">Acessar <span class="ar">→</span></span></a>
+      <a class="doc" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=143552"><b>Ficha de dados de segurança</b><span class="go">Acessar <span class="ar">→</span></span></a>
+      <a class="doc" href="https://kulzer.com.br/pt/pt/downloads/downloads.html?DocumentType=49728"><b>Informações científicas</b><span class="go">Acessar <span class="ar">→</span></span></a>
     </div>
   </div>
 </section>
 
-<!-- ============ NEWSLETTER ============ -->
-<section class="sec" style="padding-bottom:0" aria-labelledby="nl-t">
+<!-- ================= NEWSLETTER ================= -->
+<section class="nl-sec" aria-labelledby="nl-t">
   <div class="wrap">
-    <div class="nl rv">
-      <div>
-        <h2 id="nl-t">Informe-se com nossas newsletters</h2>
-        <p>Lançamentos, webinários e novidades da Kulzer Brasil direto no seu e-mail.</p>
-        <a class="btn btn-dark" style="margin-top:28px" href="https://kulzer.com.br/pt/pt/newsletter-br/registration-nl.html">Se inscrever <span class="ar">→</span></a>
-      </div>
-      <img src="https://kulzer.com.br/media/system-files/img/footer/newsletter.png" alt="" loading="lazy">
+    <div class="nl">
+      <span class="orb a" data-orb="-60"></span><span class="orb b" data-orb="40"></span>
+      <div class="tx"><h2 id="nl-t">Informe-se com nossas newsletters</h2><p>Lançamentos, webinários e novidades da Kulzer Brasil direto no seu e-mail.</p><a class="btn btn-ink" href="https://kulzer.com.br/pt/pt/newsletter-br/registration-nl.html">Se inscrever <span class="ar">→</span></a></div>
+      <div class="im"><img src="https://kulzer.com.br/media/system-files/img/footer/newsletter.png" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
 </main>
 
-<!-- ============ FOOTER ============ -->
+<!-- ================= FOOTER ================= -->
 <footer class="foot">
   <img class="gl l" src="https://kulzer.com.br/media/system-files/img/footer/footer-globe-left.svg" alt="" aria-hidden="true">
   <img class="gl r" src="https://kulzer.com.br/media/system-files/img/footer/footer-globe-left.svg" alt="" aria-hidden="true">
   <div class="wrap">
     <div class="fcols">
       <div>
-        <img src="https://kulzer.com.br/media/system-files/img/header/logo.svg" alt="Kulzer" style="height:44px;width:auto;filter:brightness(0) invert(1)">
-        <p style="font-size:14.5px;line-height:1.7;margin:18px 0 0;max-width:280px">Uma das maiores empresas odontológicas do mundo, com uma extensa gama de produtos.</p>
+        <span class="flogo"><img src="https://kulzer.com.br/media/system-files/img/header/logo.svg" alt="Kulzer"></span>
+        <p style="font-size:14.5px;line-height:1.7;margin:20px 0 0;max-width:320px">Uma das maiores empresas odontológicas do mundo, com uma extensa gama de produtos.</p>
         <div class="socials">
-          <a href="https://www.instagram.com/kulzerbrasil/" aria-label="Instagram">IG</a>
-          <a href="https://www.youtube.com/user/HeraeusKulzerBR" aria-label="YouTube">YT</a>
-          <a href="https://www.linkedin.com/company/kulzerbrasil" aria-label="LinkedIn">IN</a>
-          <a href="https://m.facebook.com/kulzerbrasil" aria-label="Facebook">FB</a>
-          <a href="https://www.tiktok.com/@kulzerbrasil" aria-label="TikTok">TT</a>
-          <a href="https://br.pinterest.com/kulzerbrasil/" aria-label="Pinterest">PI</a>
-          <a href="https://t.me/s/kulzerbrasil" aria-label="Telegram">TG</a>
+          <a href="https://www.instagram.com/kulzerbrasil/" aria-label="Instagram">IG</a><a href="https://www.youtube.com/user/HeraeusKulzerBR" aria-label="YouTube">YT</a><a href="https://www.linkedin.com/company/kulzerbrasil" aria-label="LinkedIn">IN</a><a href="https://m.facebook.com/kulzerbrasil" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@kulzerbrasil" aria-label="TikTok">TT</a><a href="https://br.pinterest.com/kulzerbrasil/" aria-label="Pinterest">PI</a><a href="https://t.me/s/kulzerbrasil" aria-label="Telegram">TG</a>
         </div>
       </div>
-      <div><h5>Cirurgião-Dentista</h5>
-        <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Tudo para o consultório</a>
-        <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/produtos-por-indicacao.html">Produtos por indicação</a>
-        <a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/produtos-por-marca.html">Produtos por marca</a></div>
-      <div><h5>Técnico de Prótese</h5>
-        <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Tudo para o laboratório</a>
-        <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/produtos-por-indicacao.html">Produtos por indicação</a>
-        <a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/produtos-por-marca.html">Produtos por marca</a></div>
-      <div><h5>CAD/CAM</h5>
-        <a href="https://kulzer.com.br/pt/pt/cad-cam/linha-digital.html">Linha Digital</a>
-        <a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Impressão 3D</a>
-        <a href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Downloads</a></div>
-      <div><h5>Empresa</h5>
-        <a href="https://kulzer.com.br/pt/pt/empresa/nos-somos-a-kulzer/overview-company.html">Nós somos a Kulzer</a>
-        <a href="https://kulzer.com.br/pt/pt/empresa/localizacoes/overview-countries.html">Localizações</a>
-        <a href="https://kulzer.com.br/pt/pt/empresa/carreira/carreira-na-kulzer.html">Carreira</a>
-        <a href="https://kulzer.com.br/pt/pt/contato.html">Contato</a></div>
+      <div><h5>Dentista</h5><a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/tudo-para-o-seu-consultorio.html">Consultório</a><a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-indicacao/produtos-por-indicacao.html">Por indicação</a><a href="https://kulzer.com.br/pt/pt/cirurgiao-dentista/produtos-por-marca/produtos-por-marca.html">Por marca</a></div>
+      <div><h5>Prótese</h5><a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/tudo-para-o-seu-laboratorio.html">Laboratório</a><a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-indicacao/produtos-por-indicacao.html">Por indicação</a><a href="https://kulzer.com.br/pt/pt/tecnico-de-protese/produtos-por-marca/produtos-por-marca.html">Por marca</a></div>
+      <div><h5>CAD/CAM</h5><a href="https://kulzer.com.br/pt/pt/cad-cam/linha-digital.html">Linha Digital</a><a href="https://kulzer.com.br/pt/pt/cad-cam/impressao-3d/impressao-3d.html">Impressão 3D</a><a href="https://kulzer.com.br/pt/pt/downloads/downloads.html">Downloads</a></div>
+      <div><h5>Empresa</h5><a href="https://kulzer.com.br/pt/pt/empresa/nos-somos-a-kulzer/overview-company.html">Nós somos a Kulzer</a><a href="https://kulzer.com.br/pt/pt/empresa/localizacoes/overview-countries.html">Localizações</a><a href="https://kulzer.com.br/pt/pt/empresa/carreira/carreira-na-kulzer.html">Carreira</a><a href="https://kulzer.com.br/pt/pt/contato.html">Contato</a></div>
     </div>
-    <div class="legal">
-      <span>© 2026 Kulzer GmbH. Todos os direitos reservados.</span>
-      <nav aria-label="Legal">
-        <a href="https://kulzer.com.br/pt/pt/imprint.html">Imprint</a>
-        <a href="https://kulzer.com.br/pt/pt/data-protection-note.html">Proteção de dados</a>
-        <a href="https://kulzer.com.br/pt/pt/disclaimer.html">Avisos legais</a>
-        <a href="https://kulzer.com.br/pt/pt/contato.html">Contato</a>
-      </nav>
-    </div>
+    <div class="legal"><span>© 2026 Kulzer GmbH. Todos os direitos reservados.</span><nav aria-label="Legal"><a href="https://kulzer.com.br/pt/pt/imprint.html">Imprint</a><a href="https://kulzer.com.br/pt/pt/data-protection-note.html">Proteção de dados</a><a href="https://kulzer.com.br/pt/pt/disclaimer.html">Avisos legais</a><a href="https://kulzer.com.br/pt/pt/contato.html">Contato</a></nav></div>
   </div>
 </footer>
 
-<a class="wa" href="https://api.whatsapp.com/send?phone=5511976449072&text=Ol%C3%A1%2C%20acessei%20o%20site%20da%20Kulzer%20e%20gostaria%20de%20algumas%20informa%C3%A7%C3%B5es" aria-label="Fale com a Kulzer pelo WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.9 7l-4.1 1 1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5" stroke-linecap="round"/></svg>
-</a>
+<a class="wa" href="https://api.whatsapp.com/send?phone=5511976449072&amp;text=Ol%C3%A1%2C%20acessei%20o%20site%20da%20Kulzer%20e%20gostaria%20de%20algumas%20informa%C3%A7%C3%B5es" aria-label="Fale com a Kulzer pelo WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.9 7l-4.1 1 1.1-4A8 8 0 1 1 20 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5" stroke-linecap="round"/></svg></a>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+
+<!-- ================= PAGE (UI, scroll, transitions) ================= -->
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasG = !!window.gsap && !!window.ScrollTrigger;
+  window.KZ = { reduce: reduce, scrollP: 0 };
 
-  /* Header: solid on scroll, hide on scroll-down */
-  var bar = document.getElementById('topbar'), prog = document.getElementById('progress'), lastY = 0;
-  function onScroll(){
-    var y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
-    bar.classList.toggle('scrolled', y > 40);
-    bar.classList.toggle('hide', y > 600 && y > lastY && !document.querySelector('.item:hover'));
-    lastY = y;
+  /* split text into masked words */
+  document.querySelectorAll('.split').forEach(function(el){
+    el.innerHTML = el.textContent.trim().split(/\s+/).map(function(w){ return '<span class="wm"><span class="wi">' + w + '</span></span>'; }).join(' ');
+  });
+  var stmt = document.querySelector('.stmt');
+  (function wrapWords(node){
+    [].slice.call(node.childNodes).forEach(function(n){
+      if(n.nodeType === 3){
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(t){ if(!t) return; if(/^\s+$/.test(t)){ frag.appendChild(document.createTextNode(t)); } else { var s = document.createElement('span'); s.className = 'w'; s.textContent = t; frag.appendChild(s); } });
+        n.replaceWith(frag);
+      } else if(n.nodeType === 1){ wrapWords(n); }
+    });
+  })(stmt);
+
+  /* header */
+  var hdr = document.getElementById('hdr'), prog = document.getElementById('progress'), lastY = 0;
+  function onScroll(y){
+    var h = document.documentElement.scrollHeight - innerHeight;
     prog.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+    var hover = document.querySelector('.it:hover'), dy = y - lastY;
+    if(y < 500 || dy < -4) hdr.classList.remove('hide');
+    else if(dy > 4 && !hover) hdr.classList.add('hide');
+    lastY = y;
   }
-  addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  /* Drawer */
-  var drawer = document.getElementById('drawer'), burger = document.getElementById('burger');
-  function setDrawer(open){
-    if(open){ drawer.hidden = false; requestAnimationFrame(function(){ drawer.classList.add('open'); }); }
-    else { drawer.classList.remove('open'); setTimeout(function(){ drawer.hidden = true; }, 500); }
-    burger.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : '';
-  }
-  burger.addEventListener('click', function(){ setDrawer(true); });
-  document.getElementById('closeDrawer').addEventListener('click', function(){ setDrawer(false); });
-  addEventListener('keydown', function(e){ if(e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false); });
+  /* drawer */
+  var dr = document.getElementById('drawer'), bg = document.getElementById('burger');
+  function setD(o){ if(o){ dr.hidden = false; requestAnimationFrame(function(){ dr.classList.add('open'); }); } else { dr.classList.remove('open'); setTimeout(function(){ dr.hidden = true; }, 550); } bg.setAttribute('aria-expanded', o); document.documentElement.style.overflow = o ? 'hidden' : ''; if(window.KZ.lenis){ o ? window.KZ.lenis.stop() : window.KZ.lenis.start(); } }
+  bg.addEventListener('click', function(){ setD(true); });
+  document.getElementById('closeDrawer').addEventListener('click', function(){ setD(false); });
+  addEventListener('keydown', function(e){ if(e.key === 'Escape' && dr.classList.contains('open')) setD(false); });
 
-  /* Hero slider */
-  var hero = document.getElementById('hero'), slides = hero.querySelectorAll('.slide'), dots = hero.querySelectorAll('.dot'), pp = document.getElementById('pp');
-  var cur = 0, DUR = 7000, timer = null, paused = reduce;
-  hero.style.setProperty('--dur', DUR + 'ms');
-  function go(i){
-    slides[cur].classList.remove('active'); dots[cur].classList.remove('active'); dots[cur].setAttribute('aria-selected','false');
-    cur = (i + slides.length) % slides.length;
-    slides[cur].classList.add('active');
-    var d = dots[cur]; d.classList.remove('active'); void d.offsetWidth; d.classList.add('active'); d.setAttribute('aria-selected','true');
-    schedule();
+  /* ---------- HERO slides (text + nav); 3D listens via KZ.onSlide ---------- */
+  var slides = document.querySelectorAll('.hs'), sbs = document.querySelectorAll('.sb'), pp = document.getElementById('pp');
+  var cur = 0, DUR = 8, paused = reduce, barTween = null, timer = null;
+  function words(s){ return s.querySelectorAll('.wi'); }
+  function rest(s){ return s.querySelectorAll('.tag,.hp,.ctas'); }
+  function startBar(){
+    sbs.forEach(function(b, i){ var bar = b.querySelector('.tr i'); if(hasG) gsap.set(bar, {scaleX: i < cur ? 0 : 0}); else bar.style.transform = 'scaleX(0)'; });
+    var bar = sbs[cur].querySelector('.tr i');
+    clearTimeout(timer); if(barTween) barTween.kill();
+    if(hasG){ barTween = gsap.fromTo(bar, {scaleX: 0}, {scaleX: 1, duration: DUR, ease: 'none', paused: paused, onComplete: function(){ go(cur + 1); }}); }
+    else if(!paused){ timer = setTimeout(function(){ go(cur + 1); }, DUR * 1000); }
   }
-  function schedule(){ clearTimeout(timer); if(!paused) timer = setTimeout(function(){ go(cur + 1); }, DUR); }
-  dots.forEach(function(d, i){ d.addEventListener('click', function(){ go(i); }); });
+  function go(i, dir){
+    var n = (i + slides.length) % slides.length; if(n === cur) return;
+    var old = slides[cur], nw = slides[n];
+    sbs[cur].classList.remove('on'); sbs[cur].setAttribute('aria-selected','false');
+    sbs[n].classList.add('on'); sbs[n].setAttribute('aria-selected','true');
+    if(hasG && !reduce){
+      gsap.to(words(old), {yPercent: -110, duration: .55, stagger: .025, ease: 'power3.in'});
+      gsap.to(rest(old), {autoAlpha: 0, y: -16, duration: .4, ease: 'power2.in', onComplete: function(){ old.classList.remove('active'); gsap.set(words(old), {yPercent: 0}); gsap.set(rest(old), {clearProps: 'all'}); }});
+      nw.classList.add('active');
+      gsap.fromTo(words(nw), {yPercent: 110}, {yPercent: 0, duration: 1, stagger: .045, ease: 'expo.out', delay: .45});
+      gsap.fromTo(rest(nw), {autoAlpha: 0, y: 24}, {autoAlpha: 1, y: 0, duration: .8, stagger: .08, ease: 'power3.out', delay: .6});
+    } else { old.classList.remove('active'); nw.classList.add('active'); }
+    cur = n;
+    if(window.KZ.onSlide) window.KZ.onSlide(n);
+    startBar();
+  }
+  window.KZ.go = go; window.KZ.cur = function(){ return cur; };
+  sbs.forEach(function(b, i){ b.addEventListener('click', function(){ go(i); }); });
+  document.getElementById('prev').addEventListener('click', function(){ go(cur - 1); });
+  document.getElementById('next').addEventListener('click', function(){ go(cur + 1); });
   function setPaused(p){
-    paused = p; hero.classList.toggle('paused', p);
+    paused = p;
     pp.setAttribute('aria-label', p ? 'Retomar destaques' : 'Pausar destaques');
     pp.innerHTML = p ? '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2l10 6-10 6z"/></svg>' : '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>';
-    schedule();
+    if(barTween){ p ? barTween.pause() : barTween.resume(); } else { startBar(); }
   }
+  window.KZ.hold = function(h){ if(barTween && !paused){ h ? barTween.pause() : barTween.resume(); } };
   pp.addEventListener('click', function(){ setPaused(!paused); });
-  if(reduce) setPaused(true); else schedule();
-  /* swipe */
-  var sx = null;
-  hero.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
-  hero.addEventListener('touchend', function(e){ if(sx === null) return; var dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1)); sx = null; });
-  /* parallax on hero copy */
-  if(!reduce) addEventListener('scroll', function(){ var y = Math.min(scrollY, innerHeight); slides[cur].querySelector('.copy').style.transform = 'translateY(' + (y * .35) + 'px)'; slides[cur].querySelector('.copy').style.opacity = 1 - y / (innerHeight * .8); }, {passive:true});
+  startBar(); if(reduce) setPaused(true);
 
-  /* Audience panels: keyboard/tap opens */
-  var panels = document.querySelectorAll('.panel');
-  panels.forEach(function(p){
-    function open(){ panels.forEach(function(o){ o.classList.toggle('is-open', o === p); }); }
-    p.addEventListener('focus', open); p.addEventListener('click', open);
-  });
-
-  /* Products */
-  var base = 'https://kulzer.com.br/pt/pt/produtos/', img = 'https://kulzer.com.br/media/global-images/products/';
+  /* ---------- products ---------- */
+  var B = 'https://kulzer.com.br/pt/pt/produtos/', M = 'https://kulzer.com.br/media/';
   var P = [
-    {f:['all','digital'], cat:'Impressora 3D', name:'cara® Print Cube', claim:'Muito mais que impressão 3D', desc:'Solução compacta e confiável, com alta precisão e plataforma para cinco modelos.', slug:'cara-print-cube', img: img+'cara/cara-cube/cara-print-cube-productpage/3d-printing-cara-print-cube-front-closed-1600x900-image-1280w-720h.webp', isNew:true},
-    {f:['all','lab'], cat:'Pigmento cerâmico', name:'HeraCeram® cre-active', claim:'Criatividade com eficiência', desc:'Individualização estética em cerâmica simplificada.', slug:'heraceram-cre-active', img: img+'heraceram/heraceram-cre-active/set-box--heraceram-cre-active-1600x900-image-1280w-720h.webp'},
-    {f:['all','clinica'], cat:'Resina composta', name:'Charisma® E4SY', claim:'Facilite seu dia a dia', desc:'Com apenas 4 cores, corresponde a diferentes tonalidades da escala VITA®.', slug:'charisma-e4sy', img: img+'charisma/charisma-e4sy/charisma-e4sy-syringe-assortment-image-1280w-720h.webp'},
-    {f:['all','lab'], cat:'Dente acrílico', name:'Delara®', claim:'Estética para todas as indicações', desc:'Linha de dentes com superfície texturizada e estratificação para uma aparência viva e natural.', slug:'delara', img: img+'pala/delara/delara-image-1280w-720h.webp'},
-    {f:['clinica'], cat:'Resina composta', name:'Charisma® Diamond ONE', claim:'Resinas diretas', desc:'Resina da família Charisma® para restaurações estéticas.', slug:'charisma-diamond-one'},
-    {f:['clinica'], cat:'Adesivo', name:'GLUMA® Bond Universal', claim:'Adesivos', desc:'Adesivo universal para a rotina restauradora.', slug:'gluma-bond-universal'},
-    {f:['clinica'], cat:'Dessensibilizante', name:'GLUMA® Desensitizer', claim:'Prevenção', desc:'Para o tratamento da hipersensibilidade dentinária.', slug:'gluma-desensitizer'},
-    {f:['clinica'], cat:'Silicone de adição', name:'Variotime®', claim:'Materiais de moldagem', desc:'Silicone de adição da linha Variotime®.', slug:'variotime'},
-    {f:['lab'], cat:'Metal free', name:'HeraCeram® Zirkonia 750', claim:'Cerâmica', desc:'Cerâmica para estruturas em zircônia.', slug:'heraceram-zirkonia-750'},
-    {f:['lab'], cat:'Resina indireta', name:'Signum® composite', claim:'Resinas indiretas', desc:'Restaurações de resina indireta sobre estrutura de metal.', slug:'signum-composite'},
-    {f:['digital'], cat:'Software', name:'cara® Print CAM 2.0', claim:'Software para impressão 3D', desc:'Preparação e posicionamento de cada impressão.', slug:'cara-print-cam-2-0'},
-    {f:['digital'], cat:'Resina 3D', name:'dima® Print Digital Denture', claim:'Resinas para impressão 3D', desc:'Resina para próteses totais impressas.', slug:'dima-print-digital-denture'},
-    {f:['digital'], cat:'Pós-processamento', name:'cara® Print CleanUp', claim:'Equipamentos', desc:'Limpeza padronizada das peças impressas.', slug:'cara-print-cleanup'}
+    {f:'all digital', cat:'Impressora 3D', nm:'cara® Print Cube', cl:'Muito mais que impressão 3D', ds:'Compacta e confiável, com alta precisão e plataforma para cinco modelos.', s:'cara-print-cube', im:'global-images/products/cara/cara-cube/cara-print-cube-productpage/3d-printing-cara-print-cube-front-closed-1600x900-image-1280w-720h.webp', nw:1},
+    {f:'all lab', cat:'Pigmento cerâmico', nm:'HeraCeram® cre-active', cl:'Criatividade com eficiência', ds:'Individualização estética em cerâmica simplificada.', s:'heraceram-cre-active', im:'global-images/products/heraceram/heraceram-cre-active/set-box--heraceram-cre-active-1600x900-image-1280w-720h.webp'},
+    {f:'all clinica', cat:'Resina composta', nm:'Charisma® E4SY', cl:'Facilite seu dia a dia', ds:'Com apenas 4 cores, corresponde a diferentes tonalidades da escala VITA®.', s:'charisma-e4sy', im:'global-images/products/charisma/charisma-e4sy/charisma-e4sy-syringe-assortment-image-1280w-720h.webp'},
+    {f:'all lab', cat:'Dente acrílico', nm:'Delara®', cl:'Estética para todas as indicações', ds:'Estrutura de superfície texturizada e estratificação para aparência viva e natural.', s:'delara', im:'global-images/products/pala/delara/delara-image-1280w-720h.webp'},
+    {f:'clinica', cat:'Resina composta', nm:'Charisma® Diamond ONE', cl:'Resinas diretas', ds:'Resina da família Charisma® para restaurações estéticas.', s:'charisma-diamond-one', im:'brasil/imagens/produtos/one-image-1280w-720h.webp'},
+    {f:'clinica', cat:'Adesivo', nm:'GLUMA® Bond Universal', cl:'Adesivos', ds:'Adesivo universal para a rotina restauradora.', s:'gluma-bond-universal', im:'brasil/imagens/produtos/gluma-bond-universal-image-1280w-720h.webp'},
+    {f:'clinica', cat:'Dessensibilizante', nm:'GLUMA® Desensitizer', cl:'Prevenção', ds:'Tratamento da hipersensibilidade dentinária.', s:'gluma-desensitizer', im:'brasil/imagens/produtos/gluma-desenstizer-image-1280w-720h.webp'},
+    {f:'clinica', cat:'Silicone de adição', nm:'Variotime®', cl:'Materiais de moldagem', ds:'Silicone de adição para moldagens precisas.', s:'variotime', im:'brasil/imagens/produtos/variotime-image-1280w-720h.webp'},
+    {f:'lab', cat:'Metal free', nm:'HeraCeram® Zirkonia 750', cl:'Cerâmica', ds:'Cerâmica de recobrimento para estruturas em zircônia.', s:'heraceram-zirkonia-750', im:'global-images/products/heraceram/heraceram-zirkonia-750/66060841-66067111-heraceram-zirkonia-750-dentine--chromadentin-20g-100g-tin-nena-d-c-kulzer-packshot-150dpi-rgb-website-2020-image-1280w-720h.webp'},
+    {f:'lab', cat:'Resina indireta', nm:'Signum® composite', cl:'Resinas indiretas', ds:'Restaurações de resina indireta sobre estrutura de metal.', s:'signum-composite', im:'global-images/products/signum/composite/signum-composite-image-1280w-720h.webp'},
+    {f:'lab', cat:'Resina acrílica', nm:'PalaXpress®', cl:'Prótese total, parcial e removível', ds:'Resina acrílica auto-polimerizável.', s:'palaxpress', im:'global-images/products/pala/palaxpress/64710515-palaxpress-1000g-powder-nena-kulzer-packshot-150dpi-rgb-website-2020-image-1280w-720h.webp'},
+    {f:'digital', cat:'Resina 3D', nm:'dima® Print Digital Denture', cl:'Resinas para impressão 3D', ds:'Resina para próteses totais impressas.', s:'dima-print-digital-denture', im:'global-images/products/dima/dima-print/dima-print-digital-denture/dima-print-digital-denture-full-denture-laterally-image-1280w-720h.webp'},
+    {f:'digital', cat:'Pós-processamento', nm:'cara® Print CleanUp', cl:'Equipamentos', ds:'Limpeza padronizada das peças impressas.', s:'cara-print-cleanup', im:'global-images/products/cara/cara-print-cleanup/cara-print-cleanup-front-1600x900-image-1280w-720h.webp'},
+    {f:'digital', cat:'Pós-cura', nm:'cara® Print LEDcure', cl:'Equipamentos', ds:'Polimerização final com LEDs de longa duração.', s:'cara-print-ledcure', im:'global-images/products/cara/cara-print-ledcure/cara-print-led-cure-with-long-life-leds-image-1280w-720h.webp'}
   ];
-  var grid = document.getElementById('pgrid'), tabs = document.querySelectorAll('.tab');
+  var track = document.getElementById('track'), tabs = document.querySelectorAll('.tab'), pcount = document.getElementById('pcount');
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-  var logoMark = '<svg viewBox="0 0 40 40" width="64" height="64" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#B1C127"/><path d="M19.9 14.2c-1.7 0-3.7-1-5.7-1s-3 .6-3.7 2.4c-.7 1.9-1.4 9.7 1 15.5 1.6 3.8 5.6-5.5 8.5-5.5s7.1 9.4 8.7 5.5c2.5-5.9 1.4-13.8.7-15.7-.7-1.8-1.7-2.3-3.8-2.3s-4 1-5.7 1" fill="#fff"/></svg>';
   function render(f){
-    var items = P.filter(function(p){ return p.f.indexOf(f) > -1; });
-    grid.innerHTML = items.map(function(p, i){
-      return '<a class="card fade-swap" style="animation-delay:' + (i*60) + 'ms" href="' + base + p.slug + '.html">' +
-        (p.isNew ? '<span class="new">Novo</span>' : '') +
-        '<div class="media">' + (p.img ? '<img src="' + p.img + '" alt="' + esc(p.name) + '" loading="lazy">' : logoMark) + '</div>' +
-        '<div class="body"><span class="cat">' + esc(p.cat) + '</span><span class="name">' + esc(p.name) + '</span><span class="claim">' + esc(p.claim) + '</span><p class="desc">' + esc(p.desc) + '</p><span class="go">Detalhes <span class="ar">→</span></span></div></a>';
-    }).join('');
+    var items = P.filter(function(p){ return p.f.split(' ').indexOf(f) > -1; });
+    track.innerHTML = items.map(function(p){
+      return '<a class="card" href="' + B + p.s + '.html">' + (p.nw ? '<span class="badge-new">Novo</span>' : '') +
+        '<div class="media"><img src="' + M + p.im + '" alt="' + esc(p.nm) + '" loading="lazy"></div>' +
+        '<div class="bd"><span class="cat">' + esc(p.cat) + '</span><span class="nm">' + esc(p.nm) + '</span><span class="cl">' + esc(p.cl) + '</span><p class="ds">' + esc(p.ds) + '</p><span class="go">Detalhes <span class="ar">→</span></span></div></a>';
+    }).join('') + '<a class="card all" href="https://kulzer.com.br/pt/pt/produtos/produtos.html"><span class="kicker" style="color:#C9D933">Portfólio</span><span class="nm" style="margin-top:14px">Ver todos os produtos</span><span class="go" style="color:#fff">Explorar <span class="ar">→</span></span></a>';
+    pcount.textContent = items.length + ' produtos';
+    if(hasG && !reduce) gsap.fromTo(track.children, {autoAlpha: 0, y: 50}, {autoAlpha: 1, y: 0, duration: .7, stagger: .06, ease: 'power3.out'});
+    if(hasG) ScrollTrigger.refresh();
   }
   tabs.forEach(function(t){ t.addEventListener('click', function(){ tabs.forEach(function(o){ o.setAttribute('aria-selected', o === t); }); render(t.dataset.f); }); });
   render('all');
 
-  /* Cube storytelling */
-  var steps = document.querySelectorAll('.step'), stageImgs = document.querySelectorAll('.stage img'), badge = document.getElementById('badge');
-  var labels = ['Novo · Impressora 3D', 'Precisão e capacidade', 'Fluxo validado'];
-  var so = new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){
-        var i = +e.target.dataset.i;
-        steps.forEach(function(s){ s.classList.toggle('on', s === e.target); });
-        stageImgs.forEach(function(im, k){ im.classList.toggle('on', k === i); });
-        badge.textContent = labels[i];
-      }
-    });
-  }, {rootMargin:'-45% 0px -45% 0px'});
-  steps.forEach(function(s){ so.observe(s); });
+  if(!hasG){ addEventListener('scroll', function(){ onScroll(scrollY); }, {passive:true}); document.querySelectorAll('.stmt .w').forEach(function(w){ w.style.opacity = 1; }); return; }
 
-  /* Reveal on scroll */
-  var ro = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
-  }, {threshold:.12});
-  document.querySelectorAll('.rv,.clip').forEach(function(el){ ro.observe(el); });
+  /* ---------- smooth scroll ---------- */
+  gsap.registerPlugin(ScrollTrigger);
+  var lenis = null;
+  if(window.Lenis && !reduce){
+    lenis = new Lenis({ lerp: .085, wheelMultiplier: 1 });
+    window.KZ.lenis = lenis;
+    lenis.on('scroll', function(e){ ScrollTrigger.update(); onScroll(e.scroll); window.KZ.vel = e.velocity; });
+    gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click', function(e){ var id = a.getAttribute('href'); if(id.length > 1){ e.preventDefault(); lenis.scrollTo(id); } }); });
+  } else { addEventListener('scroll', function(){ onScroll(scrollY); }, {passive:true}); }
+
+  if(reduce){ document.querySelectorAll('.stmt .w').forEach(function(w){ w.style.opacity = 1; }); return; }
+
+  /* hero: first words in */
+  gsap.from(words(slides[0]), {yPercent: 110, duration: 1.2, stagger: .05, ease: 'expo.out', delay: .3});
+  gsap.from(rest(slides[0]), {autoAlpha: 0, y: 24, duration: .9, stagger: .1, ease: 'power3.out', delay: .55});
+  gsap.from('.hero-ui', {autoAlpha: 0, y: 30, duration: 1, delay: 1});
+  gsap.from('.hdr-in', {y: -40, autoAlpha: 0, duration: 1, ease: 'expo.out', delay: .1});
+  /* hero scroll-out */
+  ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true, onUpdate: function(s){ window.KZ.scrollP = s.progress; window.KZ.hold(s.progress > .25); } });
+  gsap.to('.hero-copy', {yPercent: 18, autoAlpha: 0, ease: 'none', scrollTrigger: {trigger: '#hero', start: 'top top', end: '70% top', scrub: true}});
+  gsap.to('#ga', {attr: {d: 'M0 150 C 240 150, 620 150, 860 150 Z'}, ease: 'none', scrollTrigger: {trigger: '#hero', start: '40% top', end: 'bottom top', scrub: true}});
+  gsap.to('#gb', {attr: {d: 'M600 150 C 740 150, 1020 150, 1160 150 Z'}, ease: 'none', scrollTrigger: {trigger: '#hero', start: '40% top', end: 'bottom top', scrub: true}});
+  gsap.to('#gc', {attr: {d: 'M1080 150 C 1180 150, 1360 150, 1440 150 L1440 150 Z'}, ease: 'none', scrollTrigger: {trigger: '#hero', start: '40% top', end: 'bottom top', scrub: true}});
+
+  /* marquee driven by scroll velocity */
+  var mq = document.getElementById('mq'); mq.innerHTML += mq.innerHTML;
+  var mx = 0, dirM = 1;
+  gsap.ticker.add(function(){
+    var v = window.KZ.vel || 0; if(Math.abs(v) > .1) dirM = v > 0 ? 1 : -1;
+    mx -= (0.6 + Math.min(Math.abs(v) * .5, 14)) * dirM;
+    var w = mq.scrollWidth / 2; if(mx <= -w) mx += w; if(mx > 0) mx -= w;
+    mq.style.transform = 'translate3d(' + mx + 'px,0,0)';
+  });
+
+  /* section headings: masked word rise */
+  document.querySelectorAll('.h2.split').forEach(function(h){
+    gsap.from(h.querySelectorAll('.wi'), {yPercent: 110, duration: 1.1, stagger: .06, ease: 'expo.out', scrollTrigger: {trigger: h, start: 'top 85%'}});
+  });
+  gsap.utils.toArray('.kicker, .sec-head .lead, .stmt-foot .lead').forEach(function(el){
+    gsap.from(el, {autoAlpha: 0, y: 30, duration: 1, ease: 'power3.out', scrollTrigger: {trigger: el, start: 'top 88%'}});
+  });
+
+  /* statement: words light up while scrolling */
+  gsap.to('.stmt .w', {opacity: 1, stagger: .1, ease: 'none', scrollTrigger: {trigger: '.stmt', start: 'top 80%', end: 'bottom 45%', scrub: true}});
+
+  /* audience cards */
+  gsap.from('.ac', {y: 120, autoAlpha: 0, rotate: 2, duration: 1.2, stagger: .14, ease: 'expo.out', scrollTrigger: {trigger: '.aud-grid', start: 'top 85%'}});
+  gsap.utils.toArray('[data-par]').forEach(function(im){
+    gsap.fromTo(im, {yPercent: 12}, {yPercent: -12, ease: 'none', scrollTrigger: {trigger: im.parentElement, start: 'top bottom', end: 'bottom top', scrub: true}});
+  });
+
+  /* responsive pinned sections */
+  var mm = gsap.matchMedia();
+  mm.add('(min-width: 901px)', function(){
+    /* products: pinned horizontal scroll */
+    var dist = function(){ return Math.max(0, track.scrollWidth - document.querySelector('.track-wrap').clientWidth); };
+    gsap.to(track, {x: function(){ return -dist(); }, ease: 'none', scrollTrigger: {
+      trigger: '#prod', start: 'top top', end: function(){ return '+=' + (dist() + innerHeight * .3); }, pin: true, scrub: .8, invalidateOnRefresh: true,
+      onUpdate: function(s){ document.getElementById('pbar').style.transform = 'scaleX(' + s.progress + ')'; }
+    }});
+
+    /* digital flow: pinned storytelling */
+    var steps = gsap.utils.toArray('.step'), imgs = gsap.utils.toArray('#card3d img'), dots = gsap.utils.toArray('#fdots i');
+    var tl = gsap.timeline({scrollTrigger: {trigger: '#flow', start: 'top top', end: '+=' + (steps.length * 90) + '%', pin: true, scrub: .8,
+      onUpdate: function(s){ var p = s.progress * steps.length; dots.forEach(function(d, i){ d.style.setProperty('--p', Math.min(1, Math.max(0, p - i))); }); }}});
+    tl.fromTo('#card3d', {rotateY: -18, rotateX: 6}, {rotateY: 18, rotateX: -4, ease: 'none', duration: steps.length}, 0);
+    tl.fromTo('.stage .ring', {scale: .9, rotate: 0}, {scale: 1.08, rotate: 90, ease: 'none', duration: steps.length}, 0);
+    steps.forEach(function(st, i){
+      if(i === 0) return;
+      var at = i - .45;
+      tl.to(steps[i-1], {autoAlpha: 0, y: -60, duration: .3, ease: 'power2.in'}, at)
+        .fromTo(st, {autoAlpha: 0, y: 60}, {autoAlpha: 1, y: 0, duration: .35, ease: 'power3.out'}, at + .25)
+        .to(imgs[i-1], {autoAlpha: 0, scale: .85, duration: .35}, at)
+        .fromTo(imgs[i], {autoAlpha: 0, scale: 1.15}, {autoAlpha: 1, scale: 1, duration: .45}, at + .15);
+    });
+    tl.to({}, {duration: .3});
+    return function(){ gsap.set([track, '#card3d', steps, imgs], {clearProps: 'all'}); };
+  });
+
+  /* dark section curtain */
+  gsap.fromTo('#flow', {clipPath: 'circle(18% at 50% 100%)'}, {clipPath: 'circle(150% at 50% 100%)', ease: 'none', scrollTrigger: {trigger: '#flow', start: 'top bottom', end: 'top 15%', scrub: true}});
+
+  /* counters */
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var o = {v: 0}, to = +el.dataset.count;
+    ScrollTrigger.create({trigger: el, start: 'top 90%', once: true, onEnter: function(){ gsap.to(o, {v: to, duration: 1.6, ease: 'power3.out', onUpdate: function(){ el.textContent = Math.round(o.v); }}); }});
+  });
+
+  /* education clip reveal */
+  gsap.utils.toArray('.reveal-clip').forEach(function(el, i){
+    gsap.fromTo(el, {clipPath: 'inset(18% 12% 18% 12% round 32px)'}, {clipPath: 'inset(0% 0% 0% 0% round 32px)', ease: 'none', scrollTrigger: {trigger: el, start: 'top 95%', end: 'top 40%', scrub: true}});
+  });
+
+  /* social + downloads stagger */
+  gsap.from('.so', {y: 80, autoAlpha: 0, duration: 1, stagger: .08, ease: 'expo.out', scrollTrigger: {trigger: '.soc-row', start: 'top 88%'}});
+  gsap.from('.catc, .doc', {y: 60, autoAlpha: 0, duration: 1, stagger: .07, ease: 'expo.out', scrollTrigger: {trigger: '.dl-grid', start: 'top 85%'}});
+
+  /* newsletter: scale-in + orbs parallax */
+  gsap.from('.nl', {scale: .9, borderRadius: 120, autoAlpha: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: {trigger: '.nl', start: 'top 85%'}});
+  gsap.utils.toArray('[data-orb]').forEach(function(o){ gsap.to(o, {y: +o.dataset.orb * 3, ease: 'none', scrollTrigger: {trigger: '.nl', start: 'top bottom', end: 'bottom top', scrub: true}}); });
+
+  addEventListener('load', function(){ ScrollTrigger.refresh(); });
 })();
+</script>
+
+<!-- ================= HERO WebGL: morphing particle sculptures ================= -->
+<script type="module">
+import * as THREE from 'three';
+
+const hero = document.getElementById('hero');
+const canvas = document.getElementById('gl');
+const KZ = window.KZ || {};
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+} catch (e) { hero.classList.add('no-gl'); throw e; }
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setClearColor(0x000000, 0);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
+camera.position.set(0, 0, 8);
+
+const mobile = () => innerWidth < 900;
+const N = mobile() ? 6500 : 11000;
+
+/* ---------------- SDF helpers ---------------- */
+const R = (a, b) => a + Math.random() * (b - a);
+const hyp = Math.hypot;
+const sdSphere = (x, y, z, r) => hyp(x, y, z) - r;
+function sdRoundBox(x, y, z, bx, by, bz, r) {
+  const qx = Math.abs(x) - bx + r, qy = Math.abs(y) - by + r, qz = Math.abs(z) - bz + r;
+  return hyp(Math.max(qx, 0), Math.max(qy, 0), Math.max(qz, 0)) + Math.min(Math.max(qx, qy, qz), 0) - r;
+}
+function sdEll(x, y, z, rx, ry, rz) {
+  const k0 = hyp(x / rx, y / ry, z / rz), k1 = hyp(x / (rx * rx), y / (ry * ry), z / (rz * rz));
+  return k0 * (k0 - 1) / k1;
+}
+function smin(a, b, k) { const h = Math.max(k - Math.abs(a - b), 0) / k; return Math.min(a, b) - h * h * k * 0.25; }
+function sample(sdf, ex, ey, ez, n, eps) {
+  const out = []; let g = 0;
+  while (out.length < n * 3 && g < 6e6) { g++; const x = R(-ex, ex), y = R(-ey, ey), z = R(-ez, ez); if (Math.abs(sdf(x, y, z)) < eps) out.push(x, y, z); }
+  while (out.length < n * 3 && out.length) { const k = (Math.random() * (out.length / 3) | 0) * 3; out.push(out[k], out[k + 1], out[k + 2]); }
+  return out;
+}
+
+const C = {
+  ivory: [0.97, 0.97, 0.94], white: [1, 1, 1], lime: [0.694, 0.757, 0.153], lime2: [0.79, 0.85, 0.2],
+  gray: [0.62, 0.62, 0.61], dim: [0.33, 0.36, 0.14], char: [0.42, 0.42, 0.43],
+  violet: [0.5, 0.36, 0.72], blue: [0.3, 0.58, 0.88], orange: [0.98, 0.6, 0.2], red: [0.93, 0.3, 0.33], yellow: [0.98, 0.84, 0.25]
+};
+const mix = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+
+function build(parts) { // parts: [{pts:[...], col:fn(x,y,z)->rgb}]
+  const pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+  let k = 0;
+  for (const p of parts) {
+    for (let i = 0; i < p.pts.length && k < N; i += 3, k++) {
+      const x = p.pts[i], y = p.pts[i + 1], z = p.pts[i + 2];
+      pos[k * 3] = x; pos[k * 3 + 1] = y; pos[k * 3 + 2] = z;
+      const c = p.col(x, y, z); col[k * 3] = c[0]; col[k * 3 + 1] = c[1]; col[k * 3 + 2] = c[2];
+    }
+  }
+  for (; k < N; k++) { const j = (Math.random() * (k || 1)) | 0; for (let a = 0; a < 3; a++) { pos[k * 3 + a] = pos[j * 3 + a]; col[k * 3 + a] = col[j * 3 + a]; } }
+  // shuffle so morphs criss-cross
+  for (let i = N - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; for (let a = 0; a < 3; a++) { let t = pos[i * 3 + a]; pos[i * 3 + a] = pos[j * 3 + a]; pos[j * 3 + a] = t; t = col[i * 3 + a]; col[i * 3 + a] = col[j * 3 + a]; col[j * 3 + a] = t; } }
+  return { pos, col };
+}
+const xf = (pts, fn) => { for (let i = 0; i < pts.length; i += 3) { const r = fn(pts[i], pts[i + 1], pts[i + 2]); pts[i] = r[0]; pts[i + 1] = r[1]; pts[i + 2] = r[2]; } return pts; };
+const rotX = (a) => (x, y, z) => [x, y * Math.cos(a) - z * Math.sin(a), y * Math.sin(a) + z * Math.cos(a)];
+const scl = (s, dx = 0, dy = 0, dz = 0) => (x, y, z) => [x * s + dx, y * s + dy, z * s + dz];
+
+/* ---------------- Shape 1: Dentista — molar ---------------- */
+function toothSDF(x, y, z) {
+  let d = sdRoundBox(x, y - 0.32, z, 0.56, 0.32, 0.5, 0.24);
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) d = smin(d, sdSphere(x - 0.27 * sx, y - 0.6, z - 0.24 * sz, 0.27), 0.2);
+  d = Math.max(d, -sdSphere(x, y - 0.98, z, 0.3));
+  const ry = Math.min(0, y + 0.05), taper = 1 + ry * 0.55;
+  const r1 = sdEll(x - 0.3 + ry * 0.16, y + 0.58, z, 0.17 * Math.max(taper, 0.35), 0.64, 0.24 * Math.max(taper, 0.4));
+  const r2 = sdEll(x + 0.3 - ry * 0.16, y + 0.58, z, 0.17 * Math.max(taper, 0.35), 0.64, 0.24 * Math.max(taper, 0.4));
+  d = smin(d, r1, 0.14); d = smin(d, r2, 0.14);
+  return d;
+}
+function shapeTooth() {
+  const pts = xf(sample(toothSDF, 1.0, 1.35, 0.85, N, 0.026), scl(1.3, 0, 0.12));
+  return build([{ pts, col: (x, y) => { const t = Math.min(1, Math.max(0, (-y - 0.1) / 1.5)); return Math.random() < 0.06 ? C.lime2 : mix(C.ivory, C.lime, t * 0.95); } }]);
+}
+
+/* ---------------- Shape 2: Laboratório — dental arch ---------------- */
+function toothLocal(type) {
+  if (type === 0) return [(x, y, z) => sdRoundBox(x, y, z, 0.13, 0.3, 0.065, 0.055), [0.2, 0.38, 0.13]];
+  if (type === 1) return [(x, y, z) => smin(sdRoundBox(x, y + 0.03, z, 0.12, 0.27, 0.095, 0.075), sdSphere(x, y - 0.24, z, 0.07), 0.08), [0.2, 0.38, 0.17]];
+  if (type === 2) return [(x, y, z) => { let d = sdRoundBox(x, y, z, 0.14, 0.2, 0.15, 0.07); d = smin(d, sdSphere(x, y - 0.17, z - 0.06, 0.08), 0.06); return smin(d, sdSphere(x, y - 0.17, z + 0.06, 0.08), 0.06); }, [0.22, 0.3, 0.23]];
+  return [(x, y, z) => { let d = sdRoundBox(x, y, z, 0.21, 0.19, 0.2, 0.08); for (const a of [-1, 1]) for (const b of [-1, 1]) d = smin(d, sdSphere(x - 0.09 * a, y - 0.16, z - 0.09 * b, 0.085), 0.06); return d; }, [0.3, 0.3, 0.3]];
+}
+function archParts(total) {
+  const types = [0, 0, 1, 2, 2, 3, 3], weights = [1, 1, 1.05, 1.1, 1.1, 1.45, 1.45];
+  const wsum = weights.reduce((a, b) => a + b, 0) * 2;
+  const teethN = total * 0.74, teeth = [], gum = [];
+  for (const side of [-1, 1]) for (let k = 0; k < 7; k++) {
+    const t = side * (k + 0.5) / 7;
+    const cx = t * 1.5, cz = 0.75 - t * t * 1.35;
+    let tx = 1.5, tz = -2.7 * t; const L = hyp(tx, tz); tx /= L; tz /= L;
+    const nx = -tz, nz = tx;
+    const [sdf, ext] = toothLocal(types[k]);
+    const pts = sample(sdf, ext[0], ext[1], ext[2], Math.round(teethN * weights[k] / wsum), 0.02);
+    const y0 = types[k] >= 2 ? -0.05 : 0;
+    xf(pts, (x, y, z) => [cx + x * tx + z * nx, y + y0, cz + x * tz + z * nz]);
+    teeth.push(...pts);
+  }
+  for (let i = 0; i < total * 0.26; i++) {
+    const t = R(-1.06, 1.06), a = R(0, Math.PI * 2), r = Math.sqrt(Math.random()) * 0.2;
+    let tx = 1.5, tz = -2.7 * t; const L = hyp(tx, tz); tx /= L; tz /= L;
+    gum.push(t * 1.5 + Math.cos(a) * r * -tz, -0.33 + Math.sin(a) * r * 0.6, 0.75 - t * t * 1.35 + Math.cos(a) * r * tx);
+  }
+  return { teeth, gum };
+}
+function shapeArch() {
+  // full denture (upper + lower arch), viewed from the front — like a Delara / Pala set-up
+  const up = archParts(N * 0.5), lo = archParts(N * 0.5);
+  const fUp = (pts) => xf(pts, (x, y, z) => { const p = rotX(0.28)(x, -y, z - 0.05); return [p[0] * 1.05, p[1] * 1.05 + 0.4, p[2] * 1.05]; });
+  const fLo = (pts) => xf(pts, (x, y, z) => { const p = rotX(0.28)(x * 0.93, y, (z - 0.05) * 0.93 - 0.06); return [p[0] * 1.05, p[1] * 1.05 - 0.4, p[2] * 1.05]; });
+  const toothCol = () => Math.random() < 0.04 ? C.lime2 : mix(C.ivory, [0.93, 0.9, 0.82], Math.random() * 0.5);
+  const gumCol = () => mix(C.lime, C.lime2, Math.random());
+  return build([{ pts: fUp(up.teeth), col: toothCol }, { pts: fUp(up.gum), col: gumCol }, { pts: fLo(lo.teeth), col: toothCol }, { pts: fLo(lo.gum), col: gumCol }]);
+}
+
+/* ---------------- Shape 3: HeraCeram cre-active — pigment jars + watercolor ---------------- */
+function shapePigment() {
+  const jars = [[-1.05, -0.95, 0.35, 0.95], [0.1, -1.05, 0.75, 1.05], [1.15, -0.9, 0.15, 0.9]];
+  const jarPts = [], lidPts = [];
+  const nJar = N * 0.4 / jars.length;
+  for (const [jx, jy, jz, s] of jars) {
+    for (let i = 0; i < nJar; i++) {
+      const a = R(0, Math.PI * 2), u = Math.random();
+      if (u < 0.62) { const h = R(0, 0.42); jarPts.push(jx + Math.cos(a) * 0.42 * s, jy + h * s, jz + Math.sin(a) * 0.42 * s); }
+      else if (u < 0.7) { const r = Math.sqrt(Math.random()) * 0.42 * s; jarPts.push(jx + Math.cos(a) * r, jy, jz + Math.sin(a) * r); }
+      else if (u < 0.86) { const h = R(0.42, 0.56); lidPts.push(jx + Math.cos(a) * 0.45 * s, jy + h * s, jz + Math.sin(a) * 0.45 * s); }
+      else { const r = Math.sqrt(Math.random()) * 0.45 * s; lidPts.push(jx + Math.cos(a) * r, jy + 0.56 * s, jz + Math.sin(a) * r); }
+    }
+  }
+  const blobs = [
+    [C.violet, -1.35, 0.35, -0.3, 0.55, 0.34, 0.32], [C.blue, -0.55, 0.75, -0.4, 0.5, 0.3, 0.3], [C.red, 0.2, 0.45, -0.25, 0.5, 0.32, 0.3],
+    [C.orange, 0.95, 0.7, -0.35, 0.6, 0.34, 0.3], [C.yellow, 1.55, 0.25, -0.2, 0.42, 0.3, 0.28], [C.lime2, 0.4, 1.15, -0.5, 0.55, 0.22, 0.25]
+  ];
+  const splash = [], splashCol = [];
+  const nS = N * 0.6;
+  for (let i = 0; i < nS; i++) {
+    const b = blobs[(Math.random() * blobs.length) | 0];
+    const g = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
+    let x = g() * b[4], y = g() * b[5], z = g() * b[6];
+    const ang = hyp(x, y) * 1.4; const cx = x * Math.cos(ang) - y * Math.sin(ang), cy = x * Math.sin(ang) + y * Math.cos(ang);
+    if (Math.random() < 0.07) { x = R(-2.3, 2.3); y = R(-0.4, 1.7); z = R(-1, 0.6); splash.push(x, y, z); }
+    else splash.push(b[1] + cx, b[2] + cy, b[3] + z);
+    splashCol.push(b[0]);
+  }
+  let ci = 0;
+  return build([
+    { pts: jarPts, col: (x, y) => mix(C.ivory, C.gray, Math.random() * 0.25) },
+    { pts: lidPts, col: () => mix(C.gray, C.lime, Math.random() * 0.5) },
+    { pts: splash, col: () => { const c = splashCol[ci++ % splashCol.length]; return mix(c, C.white, Math.random() * 0.25); } }
+  ]);
+}
+
+/* ---------------- Shape 4: CAD/CAM — 3D printer (cara Print Cube) ---------------- */
+function shapePrinter() {
+  const hx = 0.95, hy = 1.25, hz = 0.85;
+  const edges = [], faces = [], base = [], plate = [], obj = [], vat = [], beam = [], disp = [];
+  const corners = [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]];
+  const E = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
+  for (let i = 0; i < N * 0.16; i++) {
+    const e = E[(Math.random() * 12) | 0], a = corners[e[0]], b = corners[e[1]], t = Math.random();
+    edges.push((a[0] + (b[0] - a[0]) * t) * hx + R(-0.01, 0.01), (a[1] + (b[1] - a[1]) * t) * hy + R(-0.01, 0.01), (a[2] + (b[2] - a[2]) * t) * hz + R(-0.01, 0.01));
+  }
+  for (let i = 0; i < N * 0.13; i++) { // translucent cover faces (upper part)
+    const f = (Math.random() * 5) | 0, u = R(-1, 1), v = R(-0.35, 1);
+    if (f === 0) faces.push(u * hx, v * hy, hz); else if (f === 1) faces.push(u * hx, v * hy, -hz);
+    else if (f === 2) faces.push(hx, v * hy, u * hz); else if (f === 3) faces.push(-hx, v * hy, u * hz); else faces.push(u * hx, hy, R(-1, 1) * hz);
+  }
+  for (let i = 0; i < N * 0.17; i++) { // solid base
+    const f = (Math.random() * 4) | 0, u = R(-1, 1), v = R(-1, -0.35);
+    if (f === 0) base.push(u * hx, v * hy, hz); else if (f === 1) base.push(u * hx, v * hy, -hz); else if (f === 2) base.push(hx, v * hy, u * hz); else base.push(-hx, v * hy, u * hz);
+  }
+  for (let i = 0; i < N * 0.09; i++) plate.push(R(-0.55, 0.55), 0.62 + R(-0.02, 0.02), R(-0.5, 0.5));
+  // printed object hanging under the plate (upside-down mini arch)
+  for (let i = 0; i < N * 0.2; i++) {
+    const t = R(-1, 1), a = R(0, Math.PI * 2), r = Math.sqrt(Math.random()) * 0.11;
+    const x = t * 0.45, z = 0.25 - t * t * 0.48, y = 0.5 - Math.abs(Math.sin(t * 9)) * 0.05 - R(0, 0.28) * (1 - Math.abs(t) * 0.3);
+    obj.push(x + Math.cos(a) * r, y, z + Math.sin(a) * r);
+  }
+  for (let i = 0; i < N * 0.1; i++) { const e = Math.random() < 0.35; vat.push(e ? (Math.random() < .5 ? -0.62 : 0.62) : R(-0.62, 0.62), -0.42 + R(-0.015, 0.015), e ? R(-0.55, 0.55) : R(-0.55, 0.55)); }
+  for (let i = 0; i < N * 0.1; i++) beam.push(R(-0.4, 0.4), R(-0.4, 0.2), R(-0.3, 0.3) * 0.8);
+  for (let i = 0; i < N * 0.05; i++) disp.push(R(-0.3, 0.3), R(-0.92, -0.72), hz + 0.01);
+  const f = (p) => xf(p, scl(1.05, 0, 0.05));
+  return build([
+    { pts: f(edges), col: (x, y) => y > -0.5 ? C.lime2 : C.white },
+    { pts: f(faces), col: () => C.dim },
+    { pts: f(base), col: () => mix(C.white, C.gray, Math.random() * 0.4) },
+    { pts: f(plate), col: () => C.gray },
+    { pts: f(obj), col: () => C.ivory },
+    { pts: f(vat), col: () => C.lime },
+    { pts: f(beam), col: () => mix(C.lime2, C.white, Math.random() * 0.3) },
+    { pts: f(disp), col: () => C.lime2 }
+  ]);
+}
+
+const shapes = [shapePigment(), shapeTooth(), shapeArch(), shapePrinter()];
+
+/* ---------------- Particles ---------------- */
+const cur = new Float32Array(shapes[0].pos), from = new Float32Array(N * 3), colCur = new Float32Array(shapes[0].col), colFrom = new Float32Array(N * 3);
+const disp = new Float32Array(N * 3), burst = new Float32Array(N * 3), delay = new Float32Array(N), sizes = new Float32Array(N), phase = new Float32Array(N);
+for (let i = 0; i < N; i++) {
+  const u = R(-1, 1), a = R(0, Math.PI * 2), s = Math.sqrt(1 - u * u);
+  burst[i * 3] = s * Math.cos(a); burst[i * 3 + 1] = u; burst[i * 3 + 2] = s * Math.sin(a);
+  delay[i] = Math.random(); sizes[i] = R(0.55, 1.5); phase[i] = R(0, 6.283);
+}
+const geo = new THREE.BufferGeometry();
+const posAttr = new THREE.BufferAttribute(cur, 3).setUsage(THREE.DynamicDrawUsage);
+const colAttr = new THREE.BufferAttribute(colCur, 3).setUsage(THREE.DynamicDrawUsage);
+geo.setAttribute('position', posAttr); geo.setAttribute('aColor', colAttr); geo.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+
+const vsh = `
+  attribute vec3 aColor; attribute float aSize;
+  uniform float uSize; uniform float uPix;
+  varying vec3 vColor; varying float vDepth;
+  void main(){
+    vec4 mv = modelViewMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * mv;
+    gl_PointSize = uSize * aSize * uPix / -mv.z;
+    vColor = aColor; vDepth = -mv.z;
+  }`;
+const fsh = `
+  uniform float uOpacity; varying vec3 vColor; varying float vDepth;
+  void main(){
+    float d = length(gl_PointCoord - 0.5);
+    if (d > 0.5) discard;
+    float a = smoothstep(0.5, 0.08, d);
+    float fog = smoothstep(13.0, 6.0, vDepth);
+    gl_FragColor = vec4(vColor * (0.72 + 0.28 * fog), a * uOpacity * (0.45 + 0.55 * fog));
+  }`;
+const mat = new THREE.ShaderMaterial({ vertexShader: vsh, fragmentShader: fsh, transparent: true, depthWrite: false,
+  uniforms: { uSize: { value: 26 }, uPix: { value: renderer.getPixelRatio() }, uOpacity: { value: 1 } } });
+const points = new THREE.Points(geo, mat); points.frustumCulled = false;
+const group = new THREE.Group(); group.add(points); scene.add(group);
+
+/* ambient dust (KV lime + gray) */
+const DN = 1400, dpos = new Float32Array(DN * 3), dcol = new Float32Array(DN * 3), dsz = new Float32Array(DN);
+for (let i = 0; i < DN; i++) {
+  const r = R(4, 11), u = R(-1, 1), a = R(0, Math.PI * 2), s = Math.sqrt(1 - u * u);
+  dpos.set([r * s * Math.cos(a), r * u * 0.7, r * s * Math.sin(a) - 3], i * 3);
+  dcol.set(Math.random() < 0.5 ? [0.45, 0.5, 0.12] : [0.32, 0.32, 0.32], i * 3); dsz[i] = R(0.6, 1.8);
+}
+const dgeo = new THREE.BufferGeometry(); dgeo.setAttribute('position', new THREE.BufferAttribute(dpos, 3)); dgeo.setAttribute('aColor', new THREE.BufferAttribute(dcol, 3)); dgeo.setAttribute('aSize', new THREE.BufferAttribute(dsz, 1));
+const dmat = mat.clone(); dmat.uniforms.uOpacity.value = 0.6;
+const dust = new THREE.Points(dgeo, dmat); dust.frustumCulled = false; scene.add(dust);
+
+/* orbit rings echoing the KV globes */
+const ringMat = new THREE.LineBasicMaterial({ color: 0xB1C127, transparent: true, opacity: 0.22 });
+const rings = new THREE.Group();
+for (const [r, tilt] of [[2.35, 1.2], [2.75, 1.35]]) {
+  const pts = []; for (let i = 0; i <= 160; i++) { const a = i / 160 * Math.PI * 2; pts.push(new THREE.Vector3(Math.cos(a) * r, 0, Math.sin(a) * r)); }
+  const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), ringMat); l.rotation.x = tilt; rings.add(l);
+}
+group.add(rings);
+
+/* ---------------- morph control ---------------- */
+let target = shapes[0], t0 = -10, morphing = false;
+function morphTo(i) {
+  from.set(cur); colFrom.set(colCur); target = shapes[i]; t0 = performance.now() / 1000; morphing = true;
+  spin.y += 1.2;
+}
+KZ.onSlide = (i) => morphTo(i);
+
+/* ---------------- interaction ---------------- */
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(9, 9), hit = new THREE.Vector3(), local = new THREE.Vector3();
+const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+let mouseOn = false, mx = 0, my = 0;
+const spin = { y: 0, v: 0.0016, x: 0 };
+let drag = null;
+const hint = document.getElementById('hint');
+hero.addEventListener('pointermove', (e) => {
+  const r = canvas.getBoundingClientRect();
+  ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+  mx = ndc.x; my = ndc.y; mouseOn = true;
+  if (drag) { const dx = e.clientX - drag.x, dy = e.clientY - drag.y; spin.y += dx * 0.006; spin.x = Math.max(-0.6, Math.min(0.6, spin.x + dy * 0.003)); drag.x = e.clientX; drag.y = e.clientY; }
+});
+hero.addEventListener('pointerleave', () => { mouseOn = false; ndc.set(9, 9); });
+canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; canvas.classList.add('drag'); KZ.hold && KZ.hold(true); hint && hint.classList.add('gone'); });
+addEventListener('pointerup', () => { if (drag) { drag = null; canvas.classList.remove('drag'); KZ.hold && KZ.hold(false); } });
+
+/* ---------------- layout ---------------- */
+function layout() {
+  const w = hero.clientWidth, h = hero.clientHeight;
+  renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  if (mobile()) { group.position.set(0, 1.6, 0); group.scale.setScalar(Math.min(0.62, w / 620)); }
+  else { const off = Math.min(2.2, 1.15 + (w / h - 1) * 1.25); group.position.set(off, 0.05, 0); group.scale.setScalar(0.86); }
+}
+addEventListener('resize', layout); layout();
+
+/* ---------------- loop ---------------- */
+let visible = true;
+new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(hero);
+const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const t00 = performance.now();
+const reduce = KZ.reduce;
+
+function frame() {
+  requestAnimationFrame(frame);
+  if (!visible) return;
+  const now = performance.now() / 1000, time = now - t00 / 1000;
+  const T = now - t0, sp = KZ.scrollP || 0;
+
+  // rotation: auto spin + drag inertia + mouse tilt
+  if (!drag) spin.y *= 0.985;
+  group.rotation.y = spin.y + (reduce ? 0 : Math.sin(time * 0.32) * 0.55 + mx * 0.3);
+  group.rotation.x += ((spin.x + (reduce ? 0 : -my * 0.12)) - group.rotation.x) * 0.06;
+  rings.rotation.z = time * 0.05;
+  dust.rotation.y = time * 0.01; dust.rotation.x = Math.sin(time * 0.1) * 0.05;
+
+  // mouse in local space
+  let lx = 99, ly = 99, lz = 99;
+  if (mouseOn && !drag) { ray.setFromCamera(ndc, camera); if (ray.ray.intersectPlane(plane, hit)) { local.copy(hit); group.worldToLocal(local); lx = local.x; ly = local.y; lz = local.z; } }
+
+  const tp = target.pos, tc = target.col, scatter = sp * 3.2;
+  const dur = 1.25, done = T > dur + 0.75;
+  for (let i = 0; i < N; i++) {
+    const i3 = i * 3;
+    let e = 1, b = 0;
+    if (morphing && !done) {
+      const tt = Math.min(1, Math.max(0, (T - delay[i] * 0.7) / dur));
+      e = reduce ? 1 : ease(tt); b = reduce ? 0 : Math.sin(Math.PI * tt) * 1.1;
+    }
+    const wob = reduce ? 0 : Math.sin(time * 0.9 + phase[i]) * 0.012;
+    let x, y, z;
+    if (e < 1) {
+      x = from[i3] + (tp[i3] - from[i3]) * e; y = from[i3 + 1] + (tp[i3 + 1] - from[i3 + 1]) * e; z = from[i3 + 2] + (tp[i3 + 2] - from[i3 + 2]) * e;
+      colCur[i3] = colFrom[i3] + (tc[i3] - colFrom[i3]) * e; colCur[i3 + 1] = colFrom[i3 + 1] + (tc[i3 + 1] - colFrom[i3 + 1]) * e; colCur[i3 + 2] = colFrom[i3 + 2] + (tc[i3 + 2] - colFrom[i3 + 2]) * e;
+    } else { x = tp[i3]; y = tp[i3 + 1]; z = tp[i3 + 2]; if (morphing) { colCur[i3] = tc[i3]; colCur[i3 + 1] = tc[i3 + 1]; colCur[i3 + 2] = tc[i3 + 2]; } }
+    // repulsion
+    const dx = x + disp[i3] - lx, dy = y + disp[i3 + 1] - ly, dz = (z + disp[i3 + 2] - lz) * 0.5, d2 = dx * dx + dy * dy + dz * dz;
+    if (d2 < 0.36) { const d = Math.sqrt(d2) || 1e-4, f = (1 - d / 0.6) * 0.07; disp[i3] += dx / d * f; disp[i3 + 1] += dy / d * f; disp[i3 + 2] += dz / d * f; }
+    disp[i3] *= 0.93; disp[i3 + 1] *= 0.93; disp[i3 + 2] *= 0.93;
+    const bs = b + scatter * (0.4 + delay[i]);
+    cur[i3] = x + disp[i3] + burst[i3] * bs + wob;
+    cur[i3 + 1] = y + disp[i3 + 1] + burst[i3 + 1] * bs + wob;
+    cur[i3 + 2] = z + disp[i3 + 2] + burst[i3 + 2] * bs;
+  }
+  if (morphing && done) morphing = false;
+  posAttr.needsUpdate = true; colAttr.needsUpdate = true;
+  mat.uniforms.uOpacity.value = 1 - sp * 0.9;
+  camera.position.z = 8 - sp * 1.5;
+  renderer.render(scene, camera);
+}
+frame();
 </script>
 </body>
 </html>
